@@ -1,1 +1,1 @@
-# GLS_UAT_Final
+# GLS_Odoo5_Prototype
