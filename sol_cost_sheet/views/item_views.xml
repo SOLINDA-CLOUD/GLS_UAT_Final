@@ -47,14 +47,12 @@
       <field name="name">rap.item.item.view.tree</field>
       <field name="model">item.item</field>
       <field name="arch" type="xml">
-        <!-- <tree string="" editable="bottom"> -->
-        <tree create="0" editable="bottom" decoration-danger="data_type in ['edit','add']">
-          <!-- <field name="cost_sheet_id" /> -->
+        <tree editable="bottom" create="0" decoration-danger="data_type in ['edit','add']">
+          <field name="cost_sheet_id" invisible="1"/>
           <field name="revisied" invisible="1" />
           <field name="rap_id" readonly="1" />
           <field name="product_id" readonly="1" />
           <field name="uom_id" readonly="1" />
-          <!-- <field name="product_type" readonly="1" /> -->
           <field name="product_qty" readonly="1" />
           <field name="category_id" readonly="1" />
           <field name="component_id" readonly="1" />
@@ -62,14 +60,11 @@
           <button name="view_item_in_pr_line" type="object" icon="fa-pencil-square-o" />
           <field name="qty_po" />
           <button name="view_item_in_po_line" type="object" icon="fa-pencil-square-o" />
-          <!-- <field name="existing_price" /> -->
-          <!-- <field name="rfq_price" /> -->
           <field name="total_price" string="RAP Price" />
           <field name="price_po" />
-          <!-- <field name="rap_price" /> -->
           <button name="view_item_in_purchase" type="object" icon="fa-pencil-square-o" />
-          <field name="data_type" eadonly="1" force_save="1" optional="hide" decoration-success="data_type == 'normal'" decoration-warning="data_type == 'edit'" decoration-danger="data_type == 'add'"/>
-          <field name="edited_field" optional="hide" readonly="1" force_save="1" />
+          <field name="data_type" readonly="1" force_save="1" optional="hide" decoration-success="data_type == 'normal'" decoration-warning="data_type == 'edit'" decoration-danger="data_type == 'add'"/>
+          <field name="edited_field" optional="hide" readonly="1" force_save="1" invisible="1"/>
           <field name="status_button" invisible="1"/>
           <button name="status" type="object" icon="fa-arrow-circle-up" attrs="{'invisible': [('status_button','!=','down')]}"/>
           <button name="status" type="object" icon="fa-arrow-circle-down" attrs="{'invisible': [('status_button','!=','up')]}"/>
@@ -93,7 +88,6 @@
       <field name="res_model">item.item</field>
       <field name="view_mode">tree</field>
       <field name="domain">[]</field>
-      <field name="context">{}</field>
       <field name="help" type="html">
         <p>
         Test
