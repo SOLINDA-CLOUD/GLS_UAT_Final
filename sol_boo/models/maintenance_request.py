@@ -38,7 +38,7 @@ class ProgresHistoryMaintenance(models.Model):
                 if years > 0:
                     i.duration = str(years) + " Tahun " + str(months) + " bulan " + str(days) + " Hari" + str(hours) + " jam " + str(minutes) + " menit"
                 elif months > 0:
-                    i.duration = str(months) + " Bulan" + str(days) + " hari " + str(hours) + " jam " + str(minutes) + " menit"
+                    i.duration = str(months) + " Bulan " + str(days) + " hari " + str(hours) + " jam " + str(minutes) + " menit"
                 elif days > 0:
                     i.duration = str(days) + " Hari " + str(hours) + " jam " + str(minutes) + " menit"
                 elif hours > 0:
