@@ -18,6 +18,10 @@
                     </div>
                 </xpath>
 
+                <xpath expr="//field[@name='equipment_id']" position="before">
+                    <field name="location_id"/>
+                </xpath>
+
                 <xpath expr="//sheet" position="inside">
                     <notebook>
                         <page name="action_plan" string="Action Plan">
