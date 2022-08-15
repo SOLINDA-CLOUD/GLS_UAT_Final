@@ -31,18 +31,18 @@ class ProgresHistoryMaintenance(models.Model):
             if i.start_date and i.end_date:
                 diff = relativedelta.relativedelta(i.end_date, i.start_date)
                 years = diff.years
-                months = months
+                months = diff.months
                 days = diff.days
                 hours = diff.hours
                 minutes = diff.minutes
                 if years > 0:
-                    i.duration = str(years) + " Tahun " + str(months) + " bulan " + str(days) + " Hari" + str(hours) + "jam " + str(minutes) + "menit"
+                    i.duration = str(years) + " Tahun " + str(months) + " bulan " + str(days) + " Hari" + str(hours) + " jam " + str(minutes) + " menit"
                 elif months > 0:
-                    i.duration = str(months) + "Bulan" + str(days) + "hari " + str(hours) + "jam " + str(minutes) + "menit"
+                    i.duration = str(months) + " Bulan" + str(days) + " hari " + str(hours) + " jam " + str(minutes) + " menit"
                 elif days > 0:
-                    i.duration = str(days) + "Hari " + str(hours) + "jam " + str(minutes) + "menit"
+                    i.duration = str(days) + " Hari " + str(hours) + " jam " + str(minutes) + " menit"
                 elif hours > 0:
-                    i.duration = str(hours) + "Jam " + str(minutes) + "menit"
+                    i.duration = str(hours) + " Jam " + str(minutes) + " menit"
                 else:
                     i.duration =str(minutes) + "Menit " + str(diff.seconds) + "detik"
             else:
