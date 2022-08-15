@@ -44,12 +44,16 @@
                                 <field name="ro_read"/>
                                 <field name="lwbp_read"/>
                                 <field name="wbp_read"/>
+                                <field name="deep_well_read"/>
+                                <field name="kwh_ro_read"/>
                                 <field name="minimum_prod"/>
                             </group>
                             <group>
                                 <field name="aktual_ro" />
                                 <field name="lwbp" />
                                 <field name="wbp"/>
+                                <field name="deep_well"/>
+                                <field name="ro_kwh"/>
                                 <field name="sec"/>
                             </group>
                         </group>
@@ -64,7 +68,7 @@
                                     <tree editable="bottom">
                                         <field name="time" required="1"/>
                                         <field name="end_time" optional="show"/>
-                                        <field name="trouble_id" required="1"/>
+                                        <field name="trouble_id" required="1" options="{'no_create': True, 'no_open': True}"/>
                                         <field name="type" optional="show" required="1"/>
                                         <field name="is_trouble" optional="show"/>
                                         <field name="state" readonly="1" optional="hide"/>

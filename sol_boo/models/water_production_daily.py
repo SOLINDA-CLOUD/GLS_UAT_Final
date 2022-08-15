@@ -83,6 +83,7 @@ class ShutdownSystem(models.Model):
                             'name': i.type + '...',
                             'description': i.trouble_id.name,
                             'shutdown_id':i.id,
+                            'location_id':i.warehouse_id.id
                             })
                 if maintenance:
                     i.maintenance_id = maintenance.id
@@ -193,23 +194,57 @@ class WaterProdDaily(models.Model):
     wbp = fields.Integer(string='WBP',tracking=True,compute='_get_wbp')
     wbp_read = fields.Float('WBP read',tracking=True)
     sec = fields.Float('SEC',tracking=True,compute="_ge_sec")
+    deep_well_read = fields.Float('kWh Deep WEll Read',)
+    deep_well = fields.Float('Deep Well (kWh)',compute="_get_well")
+    kwh_ro_read = fields.Float('kWh RO Read')
+    ro_kwh = fields.Float('RO (kWh)',compute="_get_ro_kwh")
     minimum_prod = fields.Integer('Minimum Produksi',tracking=True)
     hasil_prod = fields.Float('Hasil Produksi',tracking=True)
     remarks = fields.Text('Remarks',tracking=True)
     water_prod_id = fields.Many2one('water.prod.daily', string='water_prod',tracking=True)
     saidi = fields.Float('Saidi (minute)',compute="_compute_saidi_saifi",digit=(0,0))
     saifi = fields.Integer('Saifi',compute="_compute_saidi_saifi")
+    
     # LINE
     shutdown_system_line = fields.One2many('shutdown.system', 'water_prod_id', string='Shutdown System')
 
-    
+    @api.depends('wbp','lwbp','aktual_ro','deep_well','ro_kwh')
+    def _ge_sec(self):
+        self.sec = (self.lwbp + self.wbp + self.deep_well + self.ro_kwh) / self.aktual_ro
+        
+
+    @api.depends('kwh_ro_read','warehouse_id','date')
+    def _get_ro_kwh(self):
+        for i in self:
+            if i.warehouse_id and i.date:
+                deep_well = self.env["water.prod.daily"].search([("warehouse_id", "=", i.warehouse_id.id),('date','=',i.date - relativedelta.relativedelta(days=1))]).kwh_ro_read
+                if deep_well:
+                    i.ro_kwh = (i.kwh_ro_read - deep_well)
+                else:
+                    i.ro_kwh = 0
+            else:
+                i.ro_kwh = 0
+
+    @api.depends('deep_well_read','warehouse_id','date')
+    def _get_well(self):
+        for i in self:
+            if i.warehouse_id and i.date:
+                deep_well = self.env["water.prod.daily"].search([("warehouse_id", "=", i.warehouse_id.id),('date','=',i.date - relativedelta.relativedelta(days=1))]).deep_well_read
+                if deep_well:
+                    i.deep_well = (i.deep_well_read - deep_well)
+                else:
+                    i.deep_well = 0
+            else:
+                i.deep_well = 0
+
     @api.depends('wbp_read','warehouse_id','date')
     def _get_wbp(self):
         for i in self:
             if i.warehouse_id and i.date:
                 wbp_yes = self.env["water.prod.daily"].search([("warehouse_id", "=", i.warehouse_id.id),('date','=',i.date - relativedelta.relativedelta(days=1))]).wbp_read
                 if wbp_yes:
-                    i.wbp = (i.wbp_read - wbp_yes) * 2000
+                    i.wbp = (i.wbp_read - wbp_yes)
+                    # i.wbp = (i.wbp_read - wbp_yes) * 2000
                 else:
                     i.wbp = 0
             else:
@@ -221,7 +256,8 @@ class WaterProdDaily(models.Model):
             if i.warehouse_id and i.date:
                 lwbp_yes = self.env["water.prod.daily"].search([("warehouse_id", "=", i.warehouse_id.id),('date','=',i.date - relativedelta.relativedelta(days=1))]).lwbp_read
                 if lwbp_yes:
-                    i.lwbp = (i.lwbp_read - lwbp_yes) * 2000
+                    i.lwbp = (i.lwbp_read - lwbp_yes)
+                    # i.lwbp = (i.lwbp_read - lwbp_yes) * 2000
                 else:
                     i.lwbp = 0
             else:
@@ -239,12 +275,7 @@ class WaterProdDaily(models.Model):
             else:
                 i.aktual_ro = 0
 
-    @api.depends('wbp','lwbp','aktual_ro','aktual_ro')
-    def _ge_sec(self):
-        if self.lwbp and self.wbp and self.aktual_ro:
-            self.sec = (self.lwbp + self.wbp) / self.aktual_ro
-        else:
-            self.sec = 0
+    
 
     @api.depends('shutdown_system_line.is_trouble','shutdown_system_line.time','shutdown_system_line.end_time')
     def _compute_saidi_saifi(self):
