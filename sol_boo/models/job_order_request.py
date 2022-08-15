@@ -28,7 +28,7 @@ class JobOrderRequest(models.Model):
     action_taken = fields.Text('Action Taken(Tindakan)',tracking=True)
     # BEFORE MAINTENANCE
     approval_line = fields.One2many('approval.job.order', 'job_order_id', string='Approval')
-    subcontractor_id = fields.Many2one('res.partner', string='Subcontractor')
+    subcontractor_id = fields.Many2one('res.partner', string='Under Name/Subcontractor')
     main_hours = fields.Float('Main Hours')
     before_maintenance_date = fields.Date('Date')
     # AFTER MAINTENANCE
@@ -56,7 +56,8 @@ class JobOrderRequest(models.Model):
                 maintenance = self.env["maintenance.request"].create({
                             'name': 'Request Maintenance ...',
                             'description': i.problem,
-                            'job_order_id':i.id
+                            'job_order_id':i.id,
+                            'location_id':i.warehouse_id.id
                             })
                 if maintenance:
                     i.maintenance_id = maintenance.id
