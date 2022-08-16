@@ -30,7 +30,7 @@
 
                 <field name="group_id" position="after">
                     <field name="qty_is_bigger" invisible="0" />
-                    <field name="project_code" readonly="1" force_save="1"/>
+                    <field name="project_code"/>
                 </field>
 
                 <xpath expr="//field[@name='line_ids']/tree/field[@name='product_qty']" position="after">
