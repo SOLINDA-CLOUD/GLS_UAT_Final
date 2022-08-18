@@ -1,4 +1,5 @@
 from odoo import _, api, fields, models
+from datetime import datetime,date
 
 class StockLocation(models.Model):
     _inherit = 'stock.location'
@@ -26,6 +27,15 @@ class ChemicalCatridge(models.Model):
     sisa_tangki = fields.Integer('Sisa Tangki')
     sisa_tangki_kg = fields.Float(compute='_compute_sisa_tangki_kg', string='Sisa Tangki (kg)',store=True)
     
+    @api.onchange('product_id','warehouse_id','date')
+    def _onchange_product_id(self):
+        for i in self:
+            if i.product_id and i.warehouse_id and i.date:
+                first_day = datetime.strptime(i.date, '%d %b %Y').replace(day=1)
+                sisa_stock = self.env["chemical.catridge"].search([("product_id", "=", i.product_id.id),("warehouse_id", "=", i.warehouse_id.id),('date','<',i.date )],limit = 1, order = 'date desc')
+                if sisa_stock:
+                    i.stock_awal = sisa_stock.sisa_stock
+            
     @api.depends('sisa_tangki_kg','date','warehouse_id','product_id')
     def _get_pemakaian(self):
         for i in self:
