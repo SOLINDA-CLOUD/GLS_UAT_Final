@@ -44,7 +44,7 @@ class ProgresHistoryMaintenance(models.Model):
                 elif hours > 0:
                     i.duration = str(hours) + " Jam " + str(minutes) + " menit"
                 else:
-                    i.duration =str(minutes) + "Menit " + str(diff.seconds) + "detik"
+                    i.duration =str(minutes) + " Menit " + str(diff.seconds) + " detik"
             else:
                 i.duration = False
 
@@ -57,9 +57,40 @@ class MaintenanceRequest(models.Model):
     shutdown_id = fields.Many2one('shutdown.system', string='Shutdown')
     job_order_id = fields.Many2one('job.order.request', string='Job Order') 
     location_id = fields.Many2one('stock.location', string='Location')
-
+    change_stage_time = fields.Datetime('Change Stage Time')
     mr_ids = fields.One2many('stock.picking', 'maintenance_id', string='MR')
     mr_count = fields.Integer(compute='_compute_mr_count', string='MR')
+
+    duration_change_stage = fields.Char(compute='_compute_duration_change_stage', string='Duration')
+    
+    # @api.depends('change_stage_time')
+    def _compute_duration_change_stage(self):
+        now = fields.datetime.now()
+        for i in self:
+            if i.change_stage_time:
+                diff = relativedelta.relativedelta(i.change_stage_time, now)
+                years = diff.years
+                months = diff.months
+                days = diff.days
+                hours = diff.hours
+                minutes = diff.minutes
+                if years > 0:
+                    i.duration_change_stage = str(years) + " Tahun " + str(months) + " bulan " + str(days) + " Hari" + str(hours) + " jam " + str(minutes) + " menit"
+                elif months > 0:
+                    i.duration_change_stage = str(months) + " Bulan " + str(days) + " hari " + str(hours) + " jam " + str(minutes) + " menit"
+                elif days > 0:
+                    i.duration_change_stage = str(days) + " Hari " + str(hours) + " jam " + str(minutes) + " menit"
+                elif hours > 0:
+                    i.duration_change_stage = str(hours) + " Jam " + str(minutes) + " menit"
+                else:
+                    i.duration_change_stage =str(minutes) + " Menit " + str(diff.seconds) + " detik"
+            else:
+                i.duration_change_stage = 'The changes stage time is not defined!'
+
+    @api.onchange('stage_id')
+    def _onchange_stages_id(self):
+        for i in self:
+            i.change_stage_time = fields.datetime.now()
 
     @api.depends('mr_ids')
     def _compute_mr_count(self):

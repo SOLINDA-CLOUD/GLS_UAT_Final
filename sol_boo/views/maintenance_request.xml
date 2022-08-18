@@ -3,8 +3,33 @@
 
     <data>
 
+        <record id="maintenance_request_inherit_kanbanboo_view_id" model="ir.ui.view">
+            <field name="name">maintenance.request.view.kanban.inherit</field>
+            <field name="model">maintenance.request</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_request_view_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='priority']" position="before">
+                    <strong>
+                        <field name="duration_change_stage"/>
+                    </strong>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="maintenance_request_inherit_tree_view_id" model="ir.ui.view">
+            <field name="name">maintenance.request.view.tree.inherit</field>
+            <field name="model">maintenance.request</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_request_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='stage_id']" position="after">
+                    <field name="change_stage_time" optional="hide"/>
+                    <field name="duration_change_stage" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+
         <!-- maintenance.request inherit form view -->
-        <record id="view_id" model="ir.ui.view">
+        <record id="maintenance_request_inherit_form_view_id" model="ir.ui.view">
             <field name="name">maintenance.request.inherit.view.form</field>
             <field name="model">maintenance.request</field>
             <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
@@ -44,6 +69,8 @@
                                     <field name="duration" style="font-weight:bold"/>
                                 </tree>
                             </field>
+                            <field name="duration_change_stage" invisible="1"/>
+                            <field name="change_stage_time" invisible="1"/>
                         </page>
                     </notebook>
                 </xpath>
