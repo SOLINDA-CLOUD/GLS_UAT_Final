@@ -288,13 +288,6 @@ class CrmLead(models.Model):
 
     other_issue = fields.Binary('Other Issue/Other Concern')
 
-    ## access stage change in opportunity
-    @api.onchange('stage_id')
-    def _onchange_stage_id(self):
-        for i in self:
-            if i.env.user.id != i.user_id.id:
-                raise ValidationError("Only salesperson manager's can change the stage!")
-
     # @api.onchange('stage_id')
     # def _onchange_stage_crmlead(self):
     #     for i in self:
