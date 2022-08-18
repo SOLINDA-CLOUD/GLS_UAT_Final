@@ -9,7 +9,8 @@
             <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
             <field name="arch" type="xml">
                 <button name="button_to_approve" position="after">
-                    <button string="Approve" name="action_approve_gm" type="object" class="oe_highlight" states="to_approve"/>
+                    <button string="Approve" name="action_approve_gm" type="object" class="oe_highlight" states="to_approve"
+                    groups="purchase_request.group_purchase_request_manager"/>
                     <!-- <button string="Approve dir" name="button_approved" type="object" class="oe_highlight" attrs="{'invisible':['|',('qty_is_bigger','=',False),('state','!=','approved_gm')]}"/> -->
                 </button>
 
