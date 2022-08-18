@@ -210,8 +210,11 @@ class WaterProdDaily(models.Model):
 
     @api.depends('wbp','lwbp','aktual_ro','deep_well','ro_kwh')
     def _ge_sec(self):
-        self.sec = (self.lwbp + self.wbp + self.deep_well + self.ro_kwh) / self.aktual_ro
-        
+        summary = self.lwbp + self.wbp + self.deep_well + self.ro_kwh
+        if summary != 0:
+            self.sec = (summary) / self.aktual_ro
+        else:
+            self.sec = 0
 
     @api.depends('kwh_ro_read','warehouse_id','date')
     def _get_ro_kwh(self):

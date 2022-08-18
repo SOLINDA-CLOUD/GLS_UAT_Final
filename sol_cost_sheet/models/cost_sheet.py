@@ -211,6 +211,7 @@ class CostSheet(models.Model):
     def _compute_project_hse(self):
         for this in self:
             this.project_hse = this.ga_project * this.project_hse_percent
+            
     @api.depends('subtotal','car_percent')
     def _compute_car(self):
         for this in self:
