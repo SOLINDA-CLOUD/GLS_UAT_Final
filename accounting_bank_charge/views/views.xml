@@ -14,12 +14,12 @@
                         <field name="bank_charges_account" attrs="{'invisible':[('is_bank_charges','=',False)]}"/>
                         <field name="bank_charges" attrs="{'invisible':[('is_bank_charges','=',False)]}"/>
                     </group>
-                    <group string="Bank Charges (VAT)" name="bank_vat_charge"
+                    <!-- <group string="Bank Charges (VAT)" name="bank_vat_charge"
                                attrs="{'invisible':[('journal_type','!=','bank')]}">
                             <field name="is_bank_tax_applicable" attrs="{'invisible':[('is_bank_charges','=',False)]}"/>
                             <field name="bank_tax_id" attrs="{'invisible':[('is_bank_tax_applicable','=',False)]}"/>
                             <field name="bank_tax_amount" attrs="{'invisible':[('is_bank_tax_applicable','=',False)]}"/>
-                        </group>
+                        </group> -->
                 </xpath>
             </field>
         </record>
@@ -37,12 +37,12 @@
                         <field name="bank_charges_account" attrs="{'invisible':[('is_bank_charges','=',False)]}"/>
                         <field name="bank_charges" attrs="{'invisible':[('is_bank_charges','=',False)]}"/>
                     </group>
-                    <group string="Bank Charges (VAT)" name="bank_vat_charge"
+                    <!-- <group string="Bank Charges (VAT)" name="bank_vat_charge"
                                attrs="{'invisible':[('journal_type','!=','bank')]}">
                             <field name="is_bank_tax_applicable" attrs="{'invisible':[('is_bank_charges','=',False)]}"/>
                             <field name="bank_tax_id" attrs="{'invisible':[('is_bank_tax_applicable','=',False)]}"/>
                             <field name="bank_tax_amount" attrs="{'invisible':[('is_bank_tax_applicable','=',False)]}"/>
-                        </group>
+                        </group> -->
                 </xpath>
             </field>
         </record>

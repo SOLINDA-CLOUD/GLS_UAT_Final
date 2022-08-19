@@ -41,7 +41,7 @@ class PaymentRegister(models.TransientModel):
         tax_amount = 0
         for repartition_line in tax_repartition_lines:
             amount = self.bank_charges * (self.bank_tax_id.amount / 100) * (repartition_line.factor_percent / 100)
-            tax_amount -= amount
+            tax_amount += amount
             taxes_vals.append({
                 'name': 'Bank charges - Tax',
                 'amount': amount,
@@ -116,7 +116,7 @@ class AccountPayment(models.Model):
         tax_amount = 0
         for repartition_line in tax_repartition_lines:
             amount = self.bank_charges * (self.bank_tax_id.amount / 100) * (repartition_line.factor_percent / 100)
-            tax_amount -= amount
+            tax_amount += amount
             taxes_vals.append({
                 'name': 'Bank charges - Tax',
                 'amount': amount,
@@ -334,8 +334,8 @@ class AccountPayment(models.Model):
                         "partner_id": self.partner_id.id or False,
                         "journal_id": self.journal_id.id,
                         "account_id": self.journal_id.default_account_id.id,
-                        "debit": self.bank_charges if self.payment_type == 'inbound' else 0.0,
-                        "credit": self.bank_charges if self.payment_type == 'outbound' else 0.0,
+                        "debit": self.bank_charges if self.payment_type == 'outbound' else 0.0, #DIRUBAHHHHHHHHH
+                        "credit": self.bank_charges if self.payment_type == 'inbound' else 0.0, 
                         "date_maturity": self.date,
                         "bank_charge_line": True
                     }),
