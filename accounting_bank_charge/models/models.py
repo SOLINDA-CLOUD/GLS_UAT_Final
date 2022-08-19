@@ -41,7 +41,7 @@ class PaymentRegister(models.TransientModel):
         tax_amount = 0
         for repartition_line in tax_repartition_lines:
             amount = self.bank_charges * (self.bank_tax_id.amount / 100) * (repartition_line.factor_percent / 100)
-            tax_amount += amount
+            tax_amount -= amount
             taxes_vals.append({
                 'name': 'Bank charges - Tax',
                 'amount': amount,
@@ -116,7 +116,7 @@ class AccountPayment(models.Model):
         tax_amount = 0
         for repartition_line in tax_repartition_lines:
             amount = self.bank_charges * (self.bank_tax_id.amount / 100) * (repartition_line.factor_percent / 100)
-            tax_amount += amount
+            tax_amount -= amount
             taxes_vals.append({
                 'name': 'Bank charges - Tax',
                 'amount': amount,
