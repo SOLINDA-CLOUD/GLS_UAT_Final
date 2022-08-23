@@ -205,7 +205,7 @@
                                         display: inline;
                                         }
                                     </style>
-                                    <table style="text-align: left;" class="table-responsive-sm table-sm">
+                                    <table class="table-responsive-sm table-sm">
                                         <tbody>
                                             <tr>
                                                 <td style="width: 28.9617%;">Terms of Conditions</td>
