@@ -136,7 +136,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <!-- <tr>
+                            <tr>
                                 <td style="text-align: left; width: 99.9997%;" colspan="7">
                                     <table style="table-layout: fixed; border-collapse: collapse; width: 100%; margin-top: 20px; height: 36px;" border="1">
                                         <thead>
@@ -197,8 +197,8 @@
                                         </tbody>
                                     </table>
                                 </td>
-                            </tr> -->
-                            <tr>
+                            </tr>
+                            <!-- <tr>
                                 <td style="text-align: left; width: 99.9997%; padding-top: 20px; padding-left: 15px;" colspan="7">
                                     <style>
                                         p {
@@ -262,7 +262,7 @@
                                     </table>
                            
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td style="text-align: left; width: 99.9997%;" colspan="7">For further information, please do not hesitate to contact us.</td>
                             </tr>
@@ -293,7 +293,6 @@
                                     </span>......................................
                                 </td>
                             </tr>
-                            
                         </tbody>
                     </table>
 
