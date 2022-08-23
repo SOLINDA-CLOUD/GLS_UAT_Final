@@ -57,10 +57,10 @@ class MaintenanceRequest(models.Model):
     shutdown_id = fields.Many2one('shutdown.system', string='Shutdown')
     job_order_id = fields.Many2one('job.order.request', string='Job Order') 
     location_id = fields.Many2one('stock.location', string='Location')
-    change_stage_time = fields.Datetime('Change Stage Time')
     mr_ids = fields.One2many('stock.picking', 'maintenance_id', string='MR')
     mr_count = fields.Integer(compute='_compute_mr_count', string='MR')
 
+    change_stage_time = fields.Datetime('Change Stage Time')
     duration_change_stage = fields.Char(compute='_compute_duration_change_stage', string='Duration')
     
     # @api.depends('change_stage_time')

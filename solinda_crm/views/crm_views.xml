@@ -1,5 +1,20 @@
 <odoo>
   <data>
+
+    <record id="crm_case_tree_view_oppor_inherit_crm" model="ir.ui.view">
+      <field name="name">crm.lead.view.tree.inherit</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='stage_id']" position="after">
+          <!-- Add your fields here -->
+          <field name="change_stage_time"/>
+          <field name="duration_change_stage" optional="show"/>
+        </xpath>
+
+      </field>
+    </record>
+
     <record id="crm_case_kanban_view_leads_inherit_crm" model="ir.ui.view">
       <field name="name">crm.lead.view.form.inherit</field>
       <field name="model">crm.lead</field>
@@ -17,7 +32,10 @@
             <t t-else="">
               <field name="probability"/>
             </t>
- %
+          </div>
+          <div>
+              Duration : 
+            <field name="duration_change_stage" force_save="1"/>
           </div>
         </xpath>
       </field>
@@ -188,6 +206,8 @@
             <group string="Additional Remarks or Documentations (Pictures, Sketches)">
               <field name="description_remarks" nolabel="1" colspan="4"/>
               <field name="attachment_remarks" />
+              <field name="change_stage_time" force_save="1" invisible="1"/>
+
             </group>
           </page>
           <page string="CNA Report">
