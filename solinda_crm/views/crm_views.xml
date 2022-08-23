@@ -33,11 +33,15 @@
           <attribute name="groups">solinda_crm.group_crm_manager</attribute>
           <attribute name="attrs">{'invisible': [('type', '=', 'opportunity')]}</attribute>
         </xpath>
+        <xpath expr="//button[action_set_won_rainbowman]" position="attributes">
+          <attribute name="groups">solinda_crm.group_crm_manager</attribute>
+        </xpath>
         <xpath expr="//button[@name=%(crm.crm_lead_lost_action)d]" position="attributes">
           <attribute name="attrs">{}</attribute>
         </xpath>
         <xpath expr="//button[@name='action_set_lost']" position="attributes">
           <attribute name="invisible">1</attribute>
+          <attribute name="groups">solinda_crm.group_crm_manager</attribute>
         </xpath>
         <xpath expr="//field[@name='date_deadline']" position="attributes">
           <attribute name="attrs">{'required':[('type', '=', 'opportunity')]}</attribute>
