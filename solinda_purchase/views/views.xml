@@ -23,7 +23,7 @@
           <field name="delivery_location_id"/>
         </xpath>
         <xpath expr="//field[@name='line_ids']/tree/field[@name='product_description_variants']" position="attributes">
-          <attribute name="readonly">0</attribute>
+          <attribute name="attrs">{'readonly': [('parent.state', '=', False)]}</attribute>
         </xpath>
       </field>
     </record>
