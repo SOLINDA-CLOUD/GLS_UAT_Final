@@ -65,7 +65,7 @@
 
                     <table style="table-layout: fixed; border-collapse: collapse; width: 100%; height: 144px;">
                         <tbody style="font-size: 15px;">
-                            <!-- <tr style="height: 18px;">
+                            <tr style="height: 18px;">
                                 <td style="width: 9.51851%; height: 18px;">To</td>
                                 <td style="width: 1.97972%; height: 18px;">:</td>
                                 <td style="width: 38.1214%; height: 18px;">
@@ -135,8 +135,8 @@
                                     conditions hereinafter, as follow:</p>
                                     </div>
                                 </td>
-                            </tr> -->
-                            <tr>
+                            </tr>
+                            <!-- <tr>
                                 <td style="text-align: left; width: 99.9997%;" colspan="7">
                                     <table style="table-layout: fixed; border-collapse: collapse; width: 100%; margin-top: 20px; height: 36px;" border="1">
                                         <thead>
@@ -197,7 +197,7 @@
                                         </tbody>
                                     </table>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td style="text-align: left; width: 99.9997%; padding-top: 20px; padding-left: 15px;" colspan="7">
                                     <style>
@@ -293,6 +293,7 @@
                                     </span>......................................
                                 </td>
                             </tr>
+                            
                         </tbody>
                     </table>
 
