@@ -33,9 +33,8 @@
         <t t-call="web.basic_layout">
             <div class="page">
                 <t t-foreach="docs" t-as="doc">
-                    <t t-set="company" t-value="res_company"></t>
-
                     <header>
+                        <t t-set="company" t-value="res_company"></t>
                         <div class="row">
                             <div class="col-xs-2">
 
