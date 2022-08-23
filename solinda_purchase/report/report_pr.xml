@@ -148,7 +148,7 @@
                             <tbody style="font-size: 12px;">
                                 <tr style="height: 18px;">
                                     <td style="width: 17.529%; height: 18px; text-align: center;"></td>
-                                    <td style="width: 25.052%; height: 18px; text-align: center;">Rqequest By</td>
+                                    <td style="width: 25.052%; height: 18px; text-align: center;">Request By</td>
                                     <td style="width: 29.3071%; height: 18px; text-align: center;">Reviewed By</td>
                                     <td style="width: 21.3986%; height: 18px; text-align: center;">Approved By</td>
                                 </tr>
@@ -161,8 +161,8 @@
                                 <tr style="height: 18px;">
                                     <td style="width: 17.529%; height: 18px; text-align: center;"></td>
                                     <td style="width: 25.052%; height: 18px; text-align: center;">User Departement</td>
-                                    <td style="width: 29.3071%; height: 18px; text-align: center;">Manajer Departement</td>
-                                    <td style="width: 21.3986%; height: 18px; text-align: center;">General Manajer</td>
+                                    <td style="width: 29.3071%; height: 18px; text-align: center;">Manager Departement</td>
+                                    <td style="width: 21.3986%; height: 18px; text-align: center;">General Manager</td>
                                 </tr>
                             </tbody>
                         </table>
