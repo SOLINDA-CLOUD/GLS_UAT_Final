@@ -59,7 +59,7 @@
                     <h5 style="text-decoration: underline; text-align:center;">
                         <strong>QUOTATION</strong>
                     </h5>
-                    <p class="text-center" style="text-align: center;">
+                    <p style="text-align: center;">
                     No: 
                         <t t-esc="doc.name"/>
                     </p>
