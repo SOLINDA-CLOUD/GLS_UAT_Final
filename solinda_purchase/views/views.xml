@@ -22,7 +22,7 @@
         <xpath expr="//field[@name='line_ids']/tree/field[@name='date_plan_required']" position="after">
           <field name="delivery_location_id"/>
         </xpath>
-        </xpath><xpath expr="//field[@name='line_ids']/tree/field[@name='product_description_variants']" position="attributes">
+        <xpath expr="//field[@name='line_ids']/tree/field[@name='product_description_variants']" position="attributes">
           <attribute name="readonly">0</attribute>
         </xpath>
       </field>
