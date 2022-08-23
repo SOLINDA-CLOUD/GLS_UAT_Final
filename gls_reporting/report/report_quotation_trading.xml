@@ -37,11 +37,10 @@
                         <t t-set="company" t-value="res_company"></t>
                         <div class="row">
                             <div class="col-xs-2">
-
                                 <!-- <image src="/gls_reporting/static/src/img/gls_logo.png" style="display: inline;width: 225px;height: 125px;"/> -->
-                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-width:100%; height:auto" alt="Logo"/>
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 125px;" alt="Logo"/>
                             </div>
-                            <div class="col-xs-2 mb32">
+                            <div class="col-xs-2">
 
                             </div>
                         </div>
@@ -58,7 +57,7 @@
                     <h5 style="text-decoration: underline; text-align:center;">
                         <strong>QUOTATION</strong>
                     </h5>
-                    <p style="text-align: center;">
+                    <p class="text-center">
                     No: 
                         <t t-esc="doc.name"/>
                     </p>
