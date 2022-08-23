@@ -54,7 +54,7 @@
         </record>
 
         <record id="action_report_sale_order" model="ir.actions.report">
-            <field name="name">Quotation / Order</field>
+            <field name="name">Quotation - Order</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">gls_reporting.report_sale_order</field>
@@ -64,7 +64,7 @@
             <field name="binding_type">report</field>
         </record>
 
-        <record id="report_quotation_trading_action" model="ir.actions.report">
+        <record id="report_quotation_trading_crm_action" model="ir.actions.report">
             <field name="name">Quotation - Trading</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>

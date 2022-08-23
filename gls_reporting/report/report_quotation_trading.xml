@@ -61,7 +61,7 @@
                     No: 
                         <t t-esc="doc.name"/>
                     </p>
-                    <table style="table-layout: fixed; border-collapse: collapse; width: 100%; height: 144px;">
+                    <!-- <table style="table-layout: fixed; border-collapse: collapse; width: 100%; height: 144px;">
                         <tbody style="font-size: 15px;">
                             <tr style="height: 18px;">
                                 <td style="width: 9.51851%; height: 18px;">To</td>
@@ -112,7 +112,6 @@
                                         </a>
 
                                     </t>
-                                    <!-- <a href="mailto:procurement.awg@adaro.com">procurement.awg@adaro.com</a> -->
                                 </td>
                                 <td style="width: 8.52077%; height: 36px;"></td>
                                 <td style="width: 7.85545%; height: 36px;">Subject</td>
@@ -130,7 +129,6 @@
                                 <td style="text-align: left; width: 99.9997%;" colspan="7">
                                     <div>
                                         <p>Dear Sir,</p>
-                                        <!-- <br /> -->
                                         <p>We have the pleasure to offer you the below mentioned goods and services with the best terms and <br />
                                     conditions hereinafter, as follow:</p>
                                     </div>
@@ -261,22 +259,7 @@ p {
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <!-- <div class="d-inline">
-                                        <strong>
-                                            <u>Terms and Conditions:</u>
-                                        </strong>
-                                        <span>Quotation Validity : <t t-esc="doc.quotation_validity"/>
-                                        </span>
-                                      
-                                    </div>
-                                    <p>Delivery time : <t t-esc="doc.delivery_time"/>
-                                    </p>
-                                    <p>Deliver Point : <t t-esc="doc.delivery_point"/>
-                                    </p>
-                                    <p>Price : <t t-raw="doc.toc_price"/>
-                                    </p>
-                                    <p>Payment Terms : <t t-raw="doc.payment_terms"/>
-                                    </p> -->
+                           
                                 </td>
                             </tr>
                             <tr>
@@ -310,7 +293,7 @@ p {
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
 
             <div class="footer o_standard_footer">
                 <div class="text-center" style="font-size : 10px important!; opacity:0.25;">
