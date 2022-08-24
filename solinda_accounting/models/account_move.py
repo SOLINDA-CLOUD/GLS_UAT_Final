@@ -14,8 +14,8 @@ class AccountMove(models.Model):
                     'type': 'ir.actions.act_window',
                     'view_mode': 'tree,form',
                     'res_model': 'purchase.order',
-                    'domain':[('id','in', po_id.ids)]
-                    'context': {'create': False}
+                    'domain':[('id','in', po_id.ids)],
+                    'context': {'create': False},
                 }
             else:
                 return{
@@ -23,7 +23,7 @@ class AccountMove(models.Model):
                     'type': 'ir.actions.act_window',
                     'view_mode': 'form',
                     'res_model': 'purchase.order',
-                    'context': {'create': False}
+                    'context': {'create': False},
                     'res_id': po_id.id,
                 }
 
