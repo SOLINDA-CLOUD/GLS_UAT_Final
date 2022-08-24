@@ -61,7 +61,9 @@
                                                     <td style="width: 50%; height: 10px; border: 1px solid black; border-bottom: 0px solid transparent; padding-left: 2px;">
                                                         <p>Project Name</p>
                                                     </td>
-                                                    <td style="width: 50%; height: 10px; border: 1px solid black; border-bottom: 0px solid transparent; padding-left: 2px;"></td>
+                                                    <td style="width: 50%; height: 10px; border: 1px solid black; border-bottom: 0px solid transparent; padding-left: 2px;">
+                                                        <t t-esc="doc.project_name"/>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
