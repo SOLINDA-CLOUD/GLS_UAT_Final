@@ -14,6 +14,7 @@ class PurchaseRequisition(models.Model):
         ('trading', 'Trading'),
         ('bidding', 'Bidding')
     ], string='Need Category')
+    project_name = fields.Char(string='Project Name')
     
     @api.model
     def create(self, vals):
