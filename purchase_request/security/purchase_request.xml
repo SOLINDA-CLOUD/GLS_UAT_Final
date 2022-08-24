@@ -7,6 +7,37 @@
         <field name="parent_id" ref="base.module_category_purchase_management" />
         <field name="sequence">10</field>
     </record>
+    <record model="ir.module.category" id="module_category_purchase_request_approval">
+        <field name="name">Purchase Request Approval</field>
+        <field name="parent_id" ref="base.module_category_purchase_management" />
+        <field name="sequence">11</field>
+    </record>
+
+    <record id="group_purchase_request_approval1" model="res.groups">
+        <field name="name">Tahap 1</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="category_id" ref="module_category_purchase_request_approval" />
+    </record>
+
+    <record id="group_purchase_request_approval2" model="res.groups">
+        <field name="name">Tahap 2</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="category_id" ref="module_category_purchase_request_approval" />
+    </record>
+
+    <record id="group_purchase_request_approval3" model="res.groups">
+        <field name="name">Tahap 3</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="category_id" ref="module_category_purchase_request_approval" />
+    </record>
+
+    <record id="group_purchase_request_approval4" model="res.groups">
+        <field name="name">Tahap 3.2</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+        <field name="category_id" ref="module_category_purchase_request_approval" />
+    </record>
+
+
     <record id="group_purchase_request_user" model="res.groups">
         <field name="name">Purchase Request User</field>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
@@ -14,26 +45,21 @@
     </record>
     <record id="group_purchase_request_manager" model="res.groups">
         <field name="name">Purchase Request Manager</field>
-        <field
-            name="implied_ids"
-            eval="[(4, ref('purchase_request.group_purchase_request_user'))]"
-        />
+        <field name="implied_ids" eval="[(4, ref('purchase_request.group_purchase_request_user'))]" />
         <field name="category_id" ref="module_category_purchase_request" />
     </record>
     <record model="ir.rule" id="purchase_request_comp_rule">
         <field name="name">Purchase Request multi-company</field>
         <field name="model_id" ref="model_purchase_request" />
         <field name="global" eval="True" />
-        <field name="domain_force">
-            ['|',('company_id','=',False),('company_id', 'in', company_ids)]
+        <field name="domain_force"> ['|',('company_id','=',False),('company_id', 'in', company_ids)]
         </field>
     </record>
     <record model="ir.rule" id="purchase_request_line_comp_rule">
         <field name="name">Purchase Request Line multi-company</field>
         <field name="model_id" ref="model_purchase_request_line" />
         <field name="global" eval="True" />
-        <field name="domain_force">
-            ['|',('company_id','=',False),('company_id', 'in', company_ids)]
+        <field name="domain_force"> ['|',('company_id','=',False),('company_id', 'in', company_ids)]
         </field>
     </record>
     <record id="purchase_request_followers_rule" model="ir.rule">
@@ -44,8 +70,7 @@
         <field name="perm_write" eval="False" />
         <field name="perm_create" eval="False" />
         <field name="perm_unlink" eval="False" />
-        <field name="domain_force">
-            ['|',('requested_by','=',user.id),
+        <field name="domain_force"> ['|',('requested_by','=',user.id),
                                         ('message_partner_ids', 'in',
             [user.partner_id.id])]
         </field>
@@ -77,8 +102,7 @@
         <field name="perm_write" eval="False" />
         <field name="perm_create" eval="False" />
         <field name="perm_unlink" eval="False" />
-        <field name="domain_force">
-            ['|',('request_id.requested_by','=',user.id),
+        <field name="domain_force"> ['|',('request_id.requested_by','=',user.id),
                                         ('request_id.message_partner_ids', 'in',
             [user.partner_id.id])]
         </field>

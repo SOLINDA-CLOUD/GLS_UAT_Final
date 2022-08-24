@@ -63,6 +63,7 @@ class PurchaseRequest(models.Model):
         default=lambda self: self.env.user.has_group("base.group_no_one"),
     )
     create_directly = fields.Boolean('Create Directly')
+    pre_order = fields.Boolean('Pre Order')
     origin = fields.Char(string="Source Document")
     date_start = fields.Date(
         string="Creation date",
