@@ -5,6 +5,20 @@ from odoo.exceptions import ValidationError
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
+    def view_po_action(self):
+        for i in self:
+            po_id = i.invoice_line_ids.mapped("purchase_order_id")
+            print("==================",po_id)
+            return{
+                'name': 'Purchase',
+                'type': 'ir.actions.act_window',
+                'view_mode': 'tree,form',
+                'res_model': 'purchase.order',
+                'view_id': self.env.ref('purchase.purchase_order_view_tree').id,
+                # 'res_id': self.id,
+                'domain':[('id','in', po_id)]
+            }
+
     @api.constrains('ref')
     def _check_mobile_unique(self):
         if self.ref:
