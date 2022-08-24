@@ -14,7 +14,7 @@ class PurchaseRequisition(models.Model):
         ('trading', 'Trading'),
         ('bidding', 'Bidding')
     ], string='Need Category')
-    project_name = fields.Char(string='Project Name')
+    
     
     @api.model
     def create(self, vals):
@@ -85,3 +85,8 @@ class PurchaseOrder(models.Model):
     def create(self, vals):
         vals['name'] = self.env['ir.sequence'].next_by_code('purchase.order.req')
         return super(PurchaseOrder, self).create(vals)
+
+class PurchaseRequest(models.Model):
+    _inherit = 'purchase.request'
+
+    project_name = fields.Char(string='Project Name')
