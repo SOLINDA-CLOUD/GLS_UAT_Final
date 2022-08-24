@@ -8,16 +8,24 @@ class AccountMove(models.Model):
     def view_po_action(self):
         for i in self:
             po_id = i.invoice_line_ids.mapped("purchase_order_id")
-            print("==================",po_id)
-            return{
-                'name': 'Purchase',
-                'type': 'ir.actions.act_window',
-                'view_mode': 'tree,form',
-                'res_model': 'purchase.order',
-                # 'view_id': self.env.ref('purchase.purchase_order_view_tree').id,
-                # 'res_id': self.id,
-                'domain':[('id','in', po_id.ids)]
-            }
+            if len(po_id.ids) > 1:
+                return{
+                    'name': 'Purchase',
+                    'type': 'ir.actions.act_window',
+                    'view_mode': 'tree,form',
+                    'res_model': 'purchase.order',
+                    'domain':[('id','in', po_id.ids)]
+                    'context': {'create': False}
+                }
+            else:
+                return{
+                    'name': 'Purchase',
+                    'type': 'ir.actions.act_window',
+                    'view_mode': 'form',
+                    'res_model': 'purchase.order',
+                    'context': {'create': False}
+                    'res_id': po_id.id,
+                }
 
     @api.constrains('ref')
     def _check_mobile_unique(self):
