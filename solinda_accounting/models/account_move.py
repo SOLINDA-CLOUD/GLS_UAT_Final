@@ -14,9 +14,9 @@ class AccountMove(models.Model):
                 'type': 'ir.actions.act_window',
                 'view_mode': 'tree,form',
                 'res_model': 'purchase.order',
-                'view_id': self.env.ref('purchase.purchase_order_view_tree').id,
+                # 'view_id': self.env.ref('purchase.purchase_order_view_tree').id,
                 # 'res_id': self.id,
-                'domain':[('id','in', po_id)]
+                'domain':[('id','in', po_id.ids)]
             }
 
     @api.constrains('ref')
