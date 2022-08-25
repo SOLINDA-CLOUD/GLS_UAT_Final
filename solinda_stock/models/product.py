@@ -15,6 +15,19 @@ class ProductProduct(models.Model):
     #         if dup > 0:
     #             raise ValidationError("Internal Reference Already Exist!")
 
+    def stock_quant_view(self):
+        return {
+            'name': 'Stock On Hand',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'tree',
+            'res_model': 'stock.quant',
+            'view_id' : self.env.ref('stock.view_stock_quant_tree_editable').id,
+            'search_view_id': self.env.ref('stock.quant_search_view').id,
+            'domain': [('product_id','=',self.id)],
+            'context': {'search_default_internal_loc': 1, 'search_default_productgroup':1, 'search_default_locationgroup':1},
+            'target':'new'
+        }
+
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'

@@ -11,6 +11,9 @@
                 <xpath expr="//field[@name='default_code']" position="after">
                     <field name="code_product_vendor" />
                 </xpath>
+                <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                    <button string="Stock" name="stock_quant_view" type="object" class="oe_highlight" />
+                </xpath>
             </field>
         </record>
 
@@ -33,6 +36,7 @@
                 <xpath expr="//field[@name='name']" position="after">
                     <field name="name" string="Vendor Product Code" filter_domain="[('code_product_vendor', 'ilike', self)]"/>
                 </xpath>
+
             </field>
         </record>
 
