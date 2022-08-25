@@ -69,6 +69,7 @@ class ProductTemplate(models.Model):
     voltage = fields.Char(string='Voltage')
     casing = fields.Char(string='Casing')
     impeller = fields.Char(string='Impeller')
+    
 
 class PurchaseOrderLine(models.Model):
     _inherit ='purchase.order.line'
@@ -80,6 +81,8 @@ class PurchaseOrder(models.Model):
 
     name = fields.Char(string='Order Reference')
     notes = fields.Html(string='Notes')
+    ekspedisi = fields.Char('Ekspedisi')
+    location_id = fields.Many2one('stock.location', string='Location',related="picking_type_id.default_location_dest_id")
 
     @api.model
     def create(self, vals):

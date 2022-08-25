@@ -13,7 +13,8 @@
         </field>
         <xpath expr="//field[@name='line_ids']/tree/field[@name='schedule_date']" position="before">
           <field name="price_target"/>
-        </xpath><xpath expr="//field[@name='line_ids']/tree/field[@name='price_target']" position="before">
+        </xpath>
+        <xpath expr="//field[@name='line_ids']/tree/field[@name='price_target']" position="before">
           <field name="merk_recommended"/>
         </xpath>
         <xpath expr="//field[@name='line_ids']/tree/field[@name='schedule_date']" position="after">
@@ -27,7 +28,7 @@
         </xpath>
       </field>
     </record>
-    
+
     <record id="product_view_form" model="ir.ui.view">
       <field name="name">product.product.form</field>
       <field name="model">product.product</field>
@@ -71,6 +72,33 @@
         </xpath>
       </field>
     </record>
+
+    <record model="ir.ui.view" id="purchase_order_custom_form">
+      <field name="name">purchase.custom.order.form</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//div[@name='reminder']" position="after">
+          <field name="ekspedisi" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
+        </xpath>
+        <xpath expr="//field[@name='currency_id']" position="attributes">
+          <attribute name="readonly">1</attribute>
+          <attribute name="force_save">1</attribute>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="purchase_order_view_form_inherit_stock" model="ir.ui.view">
+      <field name="name">purchase.order.stock.view.form.inherit</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='picking_type_id']" position="after">
+          <field name="location_id" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
+        </xpath>
+      </field>
+    </record>
+
 
   </data>
 </odoo>
