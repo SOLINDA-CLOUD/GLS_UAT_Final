@@ -35,10 +35,10 @@
                     attrs="{'invisible': [('state', 'not in', ['request'])]}"/>
             <button name="request_approved" string="Approve" class="btn-primary" type="object"
                     attrs="{'invisible': ['|',('state', 'not in', ['request']),('is_manager','!=',True)]}"/>
-            <!-- <button name="request_rejected" string="Reject" class="btn-primary" type="object"
+            <button name="request_rejected" string="Reject" class="btn-primary" type="object"
                     attrs="{'invisible': ['|',('state', 'not in', ['request']),('is_manager','!=',True)]}"/>
             <button name="approved_cancelled" string="Cancel" class="btn-secondary" type="object"
-                    attrs="{'invisible': ['|',('state', 'not in', ['approved']),('is_manager','!=',True)]}"/> -->
+                    attrs="{'invisible': ['|',('state', 'not in', ['approved']),('is_manager','!=',True)]}"/>
           </header>
           <sheet>
             <group>
@@ -169,7 +169,7 @@
       <field name="model">res.partner</field>
       <field name="inherit_id" ref="base.view_partner_form"/>
       <field name="arch" type="xml">
-        <xpath expr="//field[@name='type']" position="before">
+        <xpath expr="//field[@name='phone']" position="before">
           <label for="visible_management"/>
           <div>
             <field name="visible_management" widget="priority"/>

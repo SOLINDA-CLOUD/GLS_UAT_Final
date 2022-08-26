@@ -156,9 +156,9 @@ class VendorManagement(models.Model):
     @api.constrains('respom_score', 'respon')
     def criteria_respon(self):
         for rec in self:
-            if rec.respon_eval and rec.respon_score == 2:
+            if rec.respon_eval and rec.respon_score != 2:
                 raise ValidationError('Score of Vendor eval no 5 must be 2 or 4!')
-            if rec.respon_eval and rec.respon_score == 4:
+            if rec.respon_eval and rec.respon_score != 4:
                 raise ValidationError('Score of Vendor eval no 5 must be 2 or 4!')
             if rec.terms_eval and not rec.terms:
                 raise ValidationError('Vendor eval no 5 has not evaluated yet!')
@@ -173,9 +173,9 @@ class VendorManagement(models.Model):
     @api.constrains('complain_score', 'complain')
     def criteria_complain(self):
         for rec in self:
-            if rec.complain_eval and rec.complain_score == 4:
+            if rec.complain_eval and rec.complain_score != 4:
                 raise ValidationError('Score of Vendor eval no 6 must be -4 or 4!')
-            if rec.complain_eval and rec.complain_score == -4:
+            if rec.complain_eval and rec.complain_score != -4:
                 raise ValidationError('Score of Vendor eval no 6 must be -4 or 4!')
             if rec.terms_eval and not rec.terms:
                 raise ValidationError('Vendor eval no 6 has not evaluated yet!')
@@ -190,9 +190,9 @@ class VendorManagement(models.Model):
     @api.constrains('warranty_score', 'warranty')
     def criteria_warranty(self):
         for rec in self:
-            if rec.warranty_eval and rec.warranty_score == 4:
+            if rec.warranty_eval and rec.warranty_score != 4:
                 raise ValidationError('Score of Vendor eval no 7 must be -4 or 4!')
-            if rec.warranty_eval and rec.warranty_score == -4:
+            if rec.warranty_eval and rec.warranty_score != -4:
                 raise ValidationError('Score of Vendor eval no 7 must be -4 or 4!')
             if rec.warranty_eval and not rec.warranty:
                 raise ValidationError('Vendor eval no 7 has not evaluated yet!')
