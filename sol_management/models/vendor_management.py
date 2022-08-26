@@ -1,5 +1,5 @@
 from audioop import reverse
-from odoo import models, fields, api
+from odoo import _, models, fields, api
 from odoo.exceptions import ValidationError
 
 class VendorManagement(models.Model):
@@ -71,7 +71,7 @@ class VendorManagement(models.Model):
     price = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     price_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
 
-    @api.contrains('price_score', 'price')
+    @api.constrains('price_score', 'price')
     def criteria_price(self):
         for rec in self:
             if rec.price_eval and rec.price_score > 4:
@@ -85,7 +85,7 @@ class VendorManagement(models.Model):
     terms = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     terms_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
 
-    @api.contrains('terms_score', 'terms')
+    @api.constrains('terms_score', 'terms')
     def criteria_terms(self):
         for rec in self:
             if rec.terms_eval and rec.terms_score > 4:
@@ -99,7 +99,7 @@ class VendorManagement(models.Model):
     items = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     items_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
 
-    @api.contrains('items_score', 'items')
+    @api.constrains('items_score', 'items')
     def criteria_items(self):
         for rec in self:
             if rec.items_eval and rec.items_score > 4:
@@ -113,7 +113,7 @@ class VendorManagement(models.Model):
     accuracy = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     accuracy_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
 
-    @api.contrains('accuracy_score', 'accuracy')
+    @api.constrains('accuracy_score', 'accuracy')
     def criteria_accuracy(self):
         for rec in self:
             if rec.accuracy_eval and rec.accuracy_score > 4:
@@ -127,7 +127,7 @@ class VendorManagement(models.Model):
     respon = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     respon_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
 
-    @api.contrains('respom_score', 'respon')
+    @api.constrains('respom_score', 'respon')
     def criteria_respon(self):
         for rec in self:
             if rec.respon_eval and rec.respon_score > 4:
@@ -141,7 +141,7 @@ class VendorManagement(models.Model):
     complain = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     complain_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
 
-    @api.contrains('complain_score', 'complain')
+    @api.constrains('complain_score', 'complain')
     def criteria_complain(self):
         for rec in self:
             if rec.complain_eval and rec.complain_score > 4:
@@ -155,7 +155,7 @@ class VendorManagement(models.Model):
     warranty = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     warranty_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
 
-    @api.contrains('warranty_score', 'warranty')
+    @api.constrains('warranty_score', 'warranty')
     def criteria_warranty(self):
         for rec in self:
             if rec.warranty_eval and rec.warranty_score > 4:
