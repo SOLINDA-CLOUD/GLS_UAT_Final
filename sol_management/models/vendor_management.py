@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 class VendorManagement(models.Model):
     _name = 'vendor.management'
     _description = 'Vendor Management'
-    _inherit = ['mail.threa', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'name desc'
     _rec_name = 'name'
 
