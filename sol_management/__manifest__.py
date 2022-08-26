@@ -20,12 +20,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'purchase', 'mail'],
+    'depends': ['base', 'purchase', 'mail', 'sale'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/vendor_management_views.xml',
+        'views/customer_management_views.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode
