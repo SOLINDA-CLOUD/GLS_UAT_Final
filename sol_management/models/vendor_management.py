@@ -248,7 +248,7 @@ class VendorManagement(models.Model):
 class VendorAdd(models.Model):
     _inherit = 'res.partner'
 
-    visible_management = fields.Selection(VendorManagement.point, string='Last Vendor Management', compute='_calculate_eval', readonly=True)
+    visible_management = fields.Selection(VendorManagement.point, string='Last Management', compute='_calculate_eval', readonly=True)
 
     @api.depends()
     def _calculate_eval(self):
