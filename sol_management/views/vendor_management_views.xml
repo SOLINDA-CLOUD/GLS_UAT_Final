@@ -13,13 +13,14 @@
     </record>
   </data>
   <data>
-    <record id="vendor_evaluation_action" model="ir.actions.act_window">
-      <field name="name">Vendor Managemenr</field>
+    <record id="vendor_management_action" model="ir.actions.act_window">
+      <field name="name">Vendor Management</field>
       <field name="res_model">vendor.management</field>
       <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Vendor Management" id="vendor_management" parent="purchase.menu_procurement_management" action="vendor_management_action" sequence="14"/>
+    <menuitem name="Vendor Management" id="vendor_management" parent="purchase.menu_procurement_management" 
+              action="vendor_management_action" sequence="14"/>
 
     <record id="vendor_management_view_form" model="ir.ui.view">
       <field name="name">Vendor Management Form</field>
@@ -67,61 +68,61 @@
             </group>
 
             <group string="Evaluation Item">
-                <label for="price_check"/>
+                <label for="price_eval"/>
                 <div class="o_row">
-                  <field name="price_check"/>
-                  <field name="price" widget="priority" attrs="{'invisible': [('price_check','!=',True)]}"/>
-                  <label for="price_score" attrs="{'invisible': [('price_check','!=',True)]}"/>
-                  <span><field name="price_score" attrs="{'invisible': [('price_check','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="price_comment" placeholder="Comments" attrs="{'invisible': [('price_check','!=',True)]}"/>
+                  <field name="price_eval"/>
+                  <field name="price" widget="priority" attrs="{'invisible': [('price_eval','!=',True)]}"/>
+                  <label for="price_score" attrs="{'invisible': [('price_eval','!=',True)]}"/>
+                  <span><field name="price_score" attrs="{'invisible': [('price_eval','!=',True)]}" style="width: 25px;"/></span>
+                  <field name="price_comment" placeholder="Comments" attrs="{'invisible': [('price_eval','!=',True)]}"/>
                 </div>
-                <label for="terms_check"/>
+                <label for="terms_eval"/>
                 <div class="o_row">
-                  <field name="terms_check"/>
-                  <field name="terms" widget="priority" attrs="{'invisible': [('delivery_check','!=',True)]}"/>
-                  <label for="terms_score" attrs="{'invisible': [('delivery_check','!=',True)]}"/>
-                  <span><field name="terms_score" attrs="{'invisible': [('delivery_check','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="terms_comment" placeholder="Comments" attrs="{'invisible': [('delivery_check','!=',True)]}"/>
+                  <field name="terms_eval"/>
+                  <field name="terms" widget="priority" attrs="{'invisible': [('terms_eval','!=',True)]}"/>
+                  <label for="terms_score" attrs="{'invisible': [('terms_eval','!=',True)]}"/>
+                  <span><field name="terms_score" attrs="{'invisible': [('terms_eval','!=',True)]}" style="width: 25px;"/></span>
+                  <field name="terms_comment" placeholder="Comments" attrs="{'invisible': [('terms_eval','!=',True)]}"/>
                 </div>
-                <label for="items_check"/>
+                <label for="items_eval"/>
                 <div class="o_row">
-                  <field name="items_check"/>
-                  <field name="items" widget="priority" attrs="{'invisible': [('quality_check','!=',True)]}"/>
-                  <label for="items_score" attrs="{'invisible': [('quality_check','!=',True)]}"/>
-                  <span><field name="items_score" attrs="{'invisible': [('quality_check','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="items_comment" placeholder="Comments" attrs="{'invisible': [('quality_check','!=',True)]}"/>
+                  <field name="items_eval"/>
+                  <field name="items" widget="priority" attrs="{'invisible': [('items_eval','!=',True)]}"/>
+                  <label for="items_score" attrs="{'invisible': [('items_eval','!=',True)]}"/>
+                  <span><field name="items_score" attrs="{'invisible': [('items_eval','!=',True)]}" style="width: 25px;"/></span>
+                  <field name="items_comment" placeholder="Comments" attrs="{'invisible': [('items_eval','!=',True)]}"/>
                 </div>
-                <label for="accuracy_check"/>
+                <label for="accuracy_eval"/>
                 <div class="o_row">
-                  <field name="accuracy_check"/>
-                  <field name="accuracy" widget="priority" attrs="{'invisible': [('document_check','!=',True)]}"/>
-                  <label for="accuracy_score" attrs="{'invisible': [('document_check','!=',True)]}"/>
-                  <span><field name="accuracy_score" attrs="{'invisible': [('document_check','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="accuracy_comment" placeholder="Comments" attrs="{'invisible': [('document_check','!=',True)]}"/>
+                  <field name="accuracy_eval"/>
+                  <field name="accuracy" widget="priority" attrs="{'invisible': [('accuracy_eval','!=',True)]}"/>
+                  <label for="accuracy_score" attrs="{'invisible': [('accuracy_eval','!=',True)]}"/>
+                  <span><field name="accuracy_score" attrs="{'invisible': [('accuracy_eval','!=',True)]}" style="width: 25px;"/></span>
+                  <field name="accuracy_comment" placeholder="Comments" attrs="{'invisible': [('accuracy_eval','!=',True)]}"/>
                 </div>
-                <label for="respon_check"/>
+                <label for="respon_eval"/>
                 <div class="o_row">
-                  <field name="respon_check"/>
-                  <field name="respon" widget="priority" attrs="{'invisible': [('commitment_check','!=',True)]}"/>
-                  <label for="respon_score" attrs="{'invisible': [('commitment_check','!=',True)]}"/>
-                  <span><field name="respon_score" attrs="{'invisible': [('commitment_check','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="respon_comment" placeholder="Comments" attrs="{'invisible': [('commitment_check','!=',True)]}"/>
+                  <field name="respon_eval"/>
+                  <field name="respon" widget="priority" attrs="{'invisible': [('respon_eval','!=',True)]}"/>
+                  <label for="respon_score" attrs="{'invisible': [('respon_eval','!=',True)]}"/>
+                  <span><field name="respon_score" attrs="{'invisible': [('respon_eval','!=',True)]}" style="width: 25px;"/></span>
+                  <field name="respon_comment" placeholder="Comments" attrs="{'invisible': [('respon_eval','!=',True)]}"/>
                 </div>
-                <label for="complain_check"/>
+                <label for="complain_eval"/>
                 <div class="o_row">
-                  <field name="complain_check"/>
-                  <field name="complain" widget="priority" attrs="{'invisible': [('dependability_check','!=',True)]}"/>
-                  <label for="complain_score" attrs="{'invisible': [('dependability_check','!=',True)]}"/>
-                  <span><field name="complain_score" attrs="{'invisible': [('dependability_check','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="complain_comment" placeholder="Comments" attrs="{'invisible': [('dependability_check','!=',True)]}"/>
+                  <field name="complain_eval"/>
+                  <field name="complain" widget="priority" attrs="{'invisible': [('complain_eval','!=',True)]}"/>
+                  <label for="complain_score" attrs="{'invisible': [('complain_eval','!=',True)]}"/>
+                  <span><field name="complain_score" attrs="{'invisible': [('complain_eval','!=',True)]}" style="width: 25px;"/></span>
+                  <field name="complain_comment" placeholder="Comments" attrs="{'invisible': [('complain_eval','!=',True)]}"/>
                 </div>
-                <label for="warranty_check"/>
+                <label for="warranty_eval"/>
                 <div class="o_row">
-                  <field name="warranty_check"/>
-                  <field name="warranty" widget="priority" attrs="{'invisible': [('skill_check','!=',True)]}"/>
-                  <label for="warranty_score" attrs="{'invisible': [('skill_check','!=',True)]}"/>
-                  <span><field name="warranty_score" attrs="{'invisible': [('skill_check','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="warranty_comment" placeholder="Comments" attrs="{'invisible': [('skill_check','!=',True)]}"/>
+                  <field name="warranty_eval"/>
+                  <field name="warranty" widget="priority" attrs="{'invisible': [('warranty_eval','!=',True)]}"/>
+                  <label for="warranty_score" attrs="{'invisible': [('warranty_eval','!=',True)]}"/>
+                  <span><field name="warranty_score" attrs="{'invisible': [('warranty_eval','!=',True)]}" style="width: 25px;"/></span>
+                  <field name="warranty_comment" placeholder="Comments" attrs="{'invisible': [('warranty_eval','!=',True)]}"/>
                 </div>
                 
                 <div>
@@ -163,15 +164,15 @@
       </field>
     </record>
 
-    <record id="vendor_addition_evaluation" model="ir.ui.view">
-      <field name="name">Vendor Addition Evaluation Feature</field>
+    <record id="vendor_addition_management" model="ir.ui.view">
+      <field name="name">Vendor Addition Management Feature</field>
       <field name="model">res.partner</field>
       <field name="inherit_id" ref="base.view_partner_form"/>
       <field name="arch" type="xml">
         <xpath expr="//field[@name='type']" position="before">
-          <label for="visible_eval"/>
+          <label for="visible_management"/>
           <div>
-            <field name="visible_eval" widget="priority"/>
+            <field name="visible_management" widget="priority"/>
           </div>
         </xpath>
       </field>

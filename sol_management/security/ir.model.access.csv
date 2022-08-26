@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sol_vendor_management_sol_vendor_management,sol_vendor_management.sol_vendor_management,model_sol_vendor_management_sol_vendor_management,base.group_user,1,1,1,1
+sol_management.access_vendor_management,access_vendor_management_form,sol_management.model_vendor_management,base.group_user,1,1,1,1

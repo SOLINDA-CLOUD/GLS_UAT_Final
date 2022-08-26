@@ -1,5 +1,5 @@
 from audioop import reverse
-from odoo import _, models, fields, api
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 class VendorManagement(models.Model):
@@ -55,6 +55,19 @@ class VendorManagement(models.Model):
     period_start = fields.Date('Review Period', required=True, readonly=True, states={'draft': [('readonly', False)]})
     period_end = fields.Date(required=True, readonly=True, states={'draft': [('readonly', False)]})
     manager = fields.Many2one('res.users', string="Manager", required=True, readonly=True, states={'draft': [('readonly', False)]})
+    is_manager = fields.Boolean(compute='check_manager')
+    user_id = fields.Many2one('res.users', 'Current User', compute='_get_current_user')
+
+    def _get_current_user(self):
+        self.user_id = self.env.uid
+
+    @api.depends('manager')
+    def check_manager(self):
+        for rec in self:
+            if rec.manager.id == rec.user_id.id:
+                rec.is_manager = True
+            else:
+                rec.is_manager = False
 
     @api.onchange('vendor')
     def _onchange_email_vendor(self):
@@ -222,7 +235,7 @@ class VendorAdd(models.Model):
     @api.depends()
     def _calculate_eval(self):
         for rec in self:
-            record = self.env['vendor.evaluation'].search([
+            record = self.env['vendor.management'].search([
                 ('vendor', '=', rec.id),
                 ('state', '=', 'approved')
             ])
