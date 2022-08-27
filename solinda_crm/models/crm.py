@@ -322,16 +322,21 @@ class CrmLead(models.Model):
             else:
                 i.duration_change_stage = 'The changes stage time is not defined!'
 
-    # @api.onchange('stage_id')
-    # def _onchange_stage_crmlead(self):
-    #     for i in self:
-    #         if i.env.user.employee_id.id != i.user_id.employee_id.parent_id.id:
-    #             raise ValidationError("Only salesperson manager's can change the stage!")
-
-
-    # def write(self, vals):
-    #     for i in self:
-    #         if vals.get("stage_id"):
-    #             if i.user_id.employee_id.parent_id.id != i.env.user.employee_id.id:
-    #                 raise ValidationError("Only salesperson manager's can change the stage!")
-    #     return super(CrmLead, self).write(vals)
+    def write(self, vals):
+        for i in self:
+            default_stage = self.env["crm.stage"].search([],order='sequence asc',limit=1)
+            before = self.stage_id
+            if default_stage != before and vals.get("stage_id"):
+                after = vals.get("stage_id")
+                if not i.env.user.employee_id:
+                    raise ValidationError("Your account need relateion to employee!")
+                elif not i.user_id:
+                    raise ValidationError("Salesperson is not define.")
+                elif not i.user_id.employee_id:
+                    raise ValidationError("Salesperson doesn't have employee!")
+                elif not i.user_id.employee_id.parent_id:
+                    raise ValidationError("Salesperson manager's in employee is not define.")
+                else:
+                    if i.user_id.employee_id.parent_id.id != i.env.user.employee_id.id:
+                        raise ValidationError("Only salesperson manager's can change the stage!")
+        return super(CrmLead, self).write(vals)
