@@ -83,6 +83,25 @@ class PurchaseOrder(models.Model):
     notes = fields.Html(string='Notes')
     ekspedisi = fields.Char('Ekspedisi')
     location_id = fields.Many2one('stock.location', string='Location',related="picking_type_id.default_location_dest_id")
+    state = fields.Selection([
+        ('draft', 'RFQ'),
+        ('submit', 'Submitted'),
+        ('confirm', 'Confirmed'),
+        ('sent', 'RFQ Sent'),
+        ('to approve', 'To Approve'),
+        ('purchase', 'Purchase Order'),
+        ('done', 'Locked'),
+        ('cancel', 'Cancelled')
+    ], string='Status', readonly=True, index=True, copy=False, default='draft', tracking=True)
+
+    def submit_purchase(self):
+        # Purchasing Staff
+        self.write({'state': 'submit'})
+
+    def confirm_purchase(self):
+        # Procurement Manager
+        self.write({'state': 'confirm'})
+
 
     @api.model
     def create(self, vals):
