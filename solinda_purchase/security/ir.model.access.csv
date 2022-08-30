@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 solinda_purchase.access_delivery_location,access_delivery_location,solinda_purchase.model_delivery_location,base.group_user,1,1,1,1
+solinda_purchase.access_location_rfq,access_location_rfq,solinda_purchase.model_location_rfq,base.group_user,1,1,1,1
