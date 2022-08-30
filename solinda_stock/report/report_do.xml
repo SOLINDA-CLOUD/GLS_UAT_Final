@@ -94,6 +94,8 @@
                             </tbody>
                         </table>
                     </div>
+                    <br />
+                    <br/>
                     <div class="container"></div>
                     <div class="container">
                         <table style="border-collapse: collapse; width: 100%;" border="1">
@@ -130,22 +132,17 @@
                         <div class="col-4" style="font-size: 12px;">&nbsp;</div>
                     </div> -->
                     <div class="container">
-                        <table style="border-collapse: collapse; width: 61.3765%; height: 36px;" border="1">
-                            <tbody style="font-size: 12px;">
-                                <tr style="height: 18px;">
-                                    <td style="width: 10.7863%; height: 18px; border-bottom: 1px solid transparent; border-right: 1px solid transparent;">Description</td>
-                                    <td style="width: 3.40136%; height: 18px; border-bottom: 1px solid transparent; border-right: 1px solid transparent;">:</td>
-                                    <td style="width: 47.1901%; height: 18px; border-bottom: 1px solid transparent;">
-                                        <t t-esc="doc.origin"/>
-                                    </td>
-                                </tr>
-                                <tr style="height: 18px;">
-                                    <td style="width: 10.7863%; height: 18px; border-right: 1px solid transparent;"></td>
-                                    <td style="width: 3.40136%; height: 18px; border-right: 1px solid transparent;"></td>
-                                    <td style="width: 47.1901%; height: 18px;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <table style="border-collapse: collapse; width: 64.5058%; height: 59px;" border="1">
+                        <tbody style="font-size: 12px;">
+                            <tr style="height: 18px;">
+                                <td style="width: 10.7863%; height: 59px; border-bottom: 0px solid transparent; border-right: 1px solid transparent;">Description</td>
+                                <td style="width: 3.40136%; height: 59px; border-bottom: 0px solid transparent; border-right: 1px solid transparent;">:</td>
+                                <td style="width: 52.2921%; height: 59px; border-bottom: 0px solid transparent;">
+                                    <t t-esc="doc.origin"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 <!-- <table style="border-collapse: collapse; width: 61.3765%; height: 36px;" border="1">
                            
                         </table> --> <br /><br />
