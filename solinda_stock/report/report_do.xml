@@ -109,16 +109,16 @@
                                 <t t-foreach="doc.move_line_ids_without_package" t-as="stock">
                                     <tr>
                                         <td style="width: 11.5892%; text-align: left; border: 1px solid black;">
-                                            <t t-esc="stock.product.default_code"/>
+                                            <t t-esc="stock.product_id.default_code"/>
                                         </td>
                                         <td style="width: 33.9313%; border: 1px solid black;">
-                                            <t t-esc="stock.product.name"/>
+                                            <t t-esc="stock.product_id.name"/>
                                         </td>
                                         <td style="width: 7.77389%; text-align: right; border: 1px solid black;">
                                             <t t-esc="stock.qty_done"/> <span t-field="stock.product_uom_id"/>
                                         </td>
                                         <td style="width: 20.2301%; text-align: right; border: 1px solid black;">
-                                            <t t-esc="stock.product.default_code"/>
+                                            <!-- <t t-esc="stock.product_id.default_code"/> -->
                                         </td>
                                     </tr>
                                 </t>
