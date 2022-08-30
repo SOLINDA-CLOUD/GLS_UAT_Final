@@ -9,7 +9,7 @@
             <field name="report_file">solinda_inventory.report_delivery_order</field>
             <field name="paperformat_id" ref="solinda_purchase.report_paperformat_a4_landscape_quotation_gls" />
             <field name="print_report_name">'DO - %s' % object.name</field>
-            <field name="binding_model_id" ref="stock.view_picking_form"/>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
             <field name="binding_type">report</field>
         </record>
         
