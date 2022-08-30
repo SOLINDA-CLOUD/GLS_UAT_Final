@@ -87,10 +87,10 @@
         </xpath>
         <xpath expr="//header" position="replace">
           <header>
-            <button name="submit_purchase" type="object" states="draft" string="Submit Order" groups="solinda_purchase.group_purchasing_staff_approval1"/>
-            <button name="confirm_purchase" type="object" states="submit" string="Confirm Order" groups="solinda_purchase.group_procurement_manager_approval2"/>
+            <button name="submit_purchase" type="object" class="oe_highlight" states="draft" string="Submit Order" groups="solinda_purchase.group_purchasing_staff_approval1"/>
+            <button name="confirm_purchase" type="object" class="oe_highlight" states="submit" string="Confirm Order" groups="solinda_purchase.group_procurement_manager_approval2"/>
 
-            <button name="button_confirm" type="object" states="confirm" string="Approved Order" id="draft_confirm" groups="solinda_purchase.group_direksi_approval3"/>
+            <button name="button_confirm" type="object" class="oe_highlight" states="confirm" string="Approved Order" id="draft_confirm" groups="solinda_purchase.group_direksi_approval3"/>
 
             <!-- <button name="button_confirm" type="object" states="draft" string="Confirm Order" id="draft_confirm" /> -->
             <button name="action_rfq_send" states="draft" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight" data-hotkey="g"/>
