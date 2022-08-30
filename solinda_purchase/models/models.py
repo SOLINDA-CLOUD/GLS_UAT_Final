@@ -75,10 +75,13 @@ class PurchaseOrderLine(models.Model):
 
     project_code_po = fields.Char(string='Project Code', store=True)
 
-    def _purchase_order_line(self, sequence=False):
-        res = super(PurchaseOrderLine, self)._purchase_order_line()
+class PurchaseRequest(models.Model):
+    _inherit = 'purchase.request'
+
+    def _purchase_request(self, sequence=False):
+        res = super(PurchaseRequest, self)._purchase_request()
         res.update({
-            'project_code_po': self.project_code,
+            'project_code_po': self.project_code
             })
         return res
 
