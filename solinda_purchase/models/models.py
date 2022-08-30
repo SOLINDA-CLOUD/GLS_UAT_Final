@@ -69,12 +69,21 @@ class ProductTemplate(models.Model):
     voltage = fields.Char(string='Voltage')
     casing = fields.Char(string='Casing')
     impeller = fields.Char(string='Impeller')
-    
 
 class PurchaseOrderLine(models.Model):
     _inherit ='purchase.order.line'
 
-    project_code = fields.Char(string='Project Code')
+    project_code_po = fields.Char(string='Project Code', store=True)
+
+class PurchaseRequest(models.Model):
+    _inherit = 'purchase.request'
+
+    def _purchase_request(self, sequence=False):
+        res = super(PurchaseRequest, self)._purchase_request()
+        res.update({
+            'project_code_po': self.project_code
+            })
+        return res
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
@@ -82,7 +91,8 @@ class PurchaseOrder(models.Model):
     name = fields.Char(string='Order Reference')
     notes = fields.Html(string='Notes')
     ekspedisi = fields.Char('Ekspedisi')
-    location_id = fields.Many2one('stock.location', string='Location',related="picking_type_id.default_location_dest_id")
+    # location_id = fields.Many2one('stock.location', string='Location',related="picking_type_id.default_location_dest_id")
+    location_id = fields.Many2one('stock.location', string='Location')
     state = fields.Selection([
         ('draft', 'RFQ'),
         ('submit', 'Submitted'),
