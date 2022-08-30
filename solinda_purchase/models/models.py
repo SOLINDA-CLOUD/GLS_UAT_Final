@@ -70,12 +70,6 @@ class ProductTemplate(models.Model):
     casing = fields.Char(string='Casing')
     impeller = fields.Char(string='Impeller')
 
-class LocationRfq(models.Model):
-    _name = 'location.rfq'
-    _description = 'Location RFQ'
-    
-    name = fields.Char(string='Location', store=True)
-
 class PurchaseOrderLine(models.Model):
     _inherit ='purchase.order.line'
 
@@ -88,7 +82,7 @@ class PurchaseOrder(models.Model):
     notes = fields.Html(string='Notes')
     ekspedisi = fields.Char('Ekspedisi')
     # location_id = fields.Many2one('stock.location', string='Location',related="picking_type_id.default_location_dest_id")
-    location_id = fields.Many2one(string='Location', comodel_name='location.rfq', ondelete='restrict')
+    location_id = fields.Many2one('stock.location', string='Location')
     state = fields.Selection([
         ('draft', 'RFQ'),
         ('submit', 'Submitted'),
