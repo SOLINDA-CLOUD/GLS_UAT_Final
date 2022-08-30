@@ -73,7 +73,7 @@ class ProductTemplate(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit ='purchase.order.line'
 
-    project_code_po = fields.Char(string='Project Code')
+    project_code_po = fields.Char(string='Project Code', store=True)
 
     def _purchase_order_line(self, sequence=False):
         res = super(PurchaseOrderLine, self)._purchase_order_line()
