@@ -49,7 +49,7 @@
                                                 </tr>
                                                 <tr style="height: 10px;">
                                                     <td style="width: 50%; height: 10px; border-width: 0px 1px 1px; border-style: solid; border-color: transparent black black; border-image: initial; text-align: right;">
-                                                        <t t-esc="doc.sceduled_date"/>
+                                                        <t t-esc="doc.scheduled_date"/>
                                                     </td>
                                                     <td style="width: 50%; height: 10px; border-width: 0px 1px 1px; border-style: solid; border-color: transparent black black; border-image: initial; text-align: right;">
                                                         <t t-esc="doc.name"/>
