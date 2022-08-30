@@ -98,6 +98,8 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
+    project_code_po = fields.Many2one(string='Project Code')
+
     purchase_request_lines = fields.Many2many(
         comodel_name="purchase.request.line",
         relation="purchase_request_purchase_order_line_rel",

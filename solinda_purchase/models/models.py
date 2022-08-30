@@ -73,8 +73,6 @@ class ProductTemplate(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit ='purchase.order.line'
 
-    project_code_po = fields.Many2one(string='Project Code')
-
     def _purchase_order_line(self, sequence=False):
         res = super(PurchaseOrderLine, self)._purchase_order_line()
         res.update({
