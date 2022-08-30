@@ -28,6 +28,8 @@
         'security/security.xml',
         'views/views.xml',
         'views/product.xml',
+        'report/report_action.xml',
+        'report/report_do.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode
