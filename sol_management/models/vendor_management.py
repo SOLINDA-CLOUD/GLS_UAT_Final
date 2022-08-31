@@ -220,7 +220,7 @@ class VendorManagement(models.Model):
                 count += rec.warranty_score
                 sum_total += (int(rec.warranty) * rec.warranty_score)
             if count == 0:
-                raise ValidationError('Error division by 0!')
+                raise ValidationError('Score must be filled!')
             else:
                 rec.final_score = count
     

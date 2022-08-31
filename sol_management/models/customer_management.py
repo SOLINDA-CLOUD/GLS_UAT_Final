@@ -167,6 +167,8 @@ class CustomerManagement(models.Model):
             if rec.accuracy_eval:
                 count += rec.accuracy_score
                 sum_total += (int(rec.accuracy) * rec.accuracy_score)
+            if count == 0:
+                raise ValidationError('Score must be filled!')
             else:
                 rec.final_score = count
 
