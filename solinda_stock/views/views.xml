@@ -1,11 +1,11 @@
-<odoo>
+<!-- <odoo>
   <data>
     <record id="stock_view_form" model="ir.ui.view">
       <field name="name">stock.view.form</field>
       <field name="model">stock.picking</field>
       <field name="inherit_id" ref="stock.view_picking_form"/>
       <field name="arch" type="xml">
-        <xpath expr="//notebook/page[@string="Additional Info"]" position="after">
+        <xpath expr="//notebook/page[@string="Additional Info"]">
           <page string="Shipping Information">
             <field name="ship_via"/>                    
           </page>                
@@ -13,4 +13,4 @@
       </field>
     </record>
   </data>
-</odoo>
+</odoo> -->
