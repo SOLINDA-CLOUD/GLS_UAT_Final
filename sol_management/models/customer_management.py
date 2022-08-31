@@ -148,7 +148,7 @@ class CustomerManagement(models.Model):
 
     ##Management Report
     final_score = fields.Float(readonly=True, store=True, string='Final Score')
-    final_rate = fields.Selection(point, readonly=True, string='Final Rate')
+    final_rate = fields.Selection(point, string='Final Rate')
     final_comment = fields.Char(string='Final Comment', states={'cancelled': [('readonly', True)]})
 
     def calculate(self):
