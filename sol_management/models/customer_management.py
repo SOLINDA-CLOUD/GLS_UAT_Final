@@ -11,12 +11,11 @@ class CustomerManagement(models.Model):
 
     name = fields.Char('Document number', default='/', readonly='True', copy=False)
     point = [
-        ('0', 'Not Good'),
+        ('0', 'New Customer'),
         ('1', 'Bad'),
-        ('2', 'Not Bad'),
-        ('3', 'Satisfied'),
-        ('4', 'Great'),
-        ('5', 'Excellent')
+        ('2', 'Satisfied'),
+        ('3', 'Excellent')
+
     ]
 
     state = fields.Selection([
@@ -148,7 +147,7 @@ class CustomerManagement(models.Model):
 
     ##Management Report
     final_score = fields.Float(readonly=True, store=True, string='Final Score')
-    final_rate = fields.Selection(point, string='Final Rate')
+    final_rate = fields.Selection(point, readonly=True, string='Final Rate')
     final_comment = fields.Char(string='Final Comment', states={'cancelled': [('readonly', True)]})
 
     def calculate(self):
@@ -168,7 +167,13 @@ class CustomerManagement(models.Model):
                 count += rec.accuracy_score
                 sum_total += (int(rec.accuracy) * rec.accuracy_score)
             if count == 0:
-                raise ValidationError('Score must be filled!')
+                rec.final_rate = rec.point[0][0]
+            if count >= 6 and count <= 9:
+                rec.final_rate = rec.point[1][0]
+            if count >= 10 and count <= 12:
+                rec.final_rate = rec.point[2][0]
+            if count >= 13 and count <= 14:
+                rec.final_rate = rec.point[3][0]
             else:
                 rec.final_score = count
 
