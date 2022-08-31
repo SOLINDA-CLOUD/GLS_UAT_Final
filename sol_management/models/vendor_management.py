@@ -223,7 +223,6 @@ class VendorManagement(models.Model):
                 raise ValidationError('Error division by 0!')
             else:
                 rec.final_score = count
-                rec.final_rate = str(round(sum_total/count))
     
     def unlink(self):
         for rec in self:
@@ -239,11 +238,11 @@ class VendorManagement(models.Model):
         rec.calculate()
         return rec
 
-    def write(self, vals):
-        rec = super(VendorManagement, self).write(vals)
-        if 'final_score' not in vals and 'final_rate' not in vals:
-            self.calculate()
-        return rec
+    # def write(self, vals):
+    #     rec = super(VendorManagement, self).write(vals)
+    #     if 'final_score' not in vals and 'final_rate' not in vals:
+    #         self.calculate()
+    #     return rec
 
 class VendorAdd(models.Model):
     _inherit = 'res.partner'

@@ -71,7 +71,7 @@
                 <label for="price_eval"/>
                 <div class="o_row">
                   <field name="price_eval"/>
-                  <field name="price" widget="priority" attrs="{'invisible': [('price_eval','!=',True)]}"/>
+                  <!-- <field name="price" widget="priority" attrs="{'invisible': [('price_eval','!=',True)]}"/> -->
                   <label for="price_score" attrs="{'invisible': [('price_eval','!=',True)]}"/>
                   <span><field name="price_score" attrs="{'invisible': [('price_eval','!=',True)]}" style="width: 25px;"/></span>
                   <field name="price_comment" placeholder="Comments" attrs="{'invisible': [('price_eval','!=',True)]}"/>
@@ -79,7 +79,7 @@
                 <label for="terms_eval"/>
                 <div class="o_row">
                   <field name="terms_eval"/>
-                  <field name="terms" widget="priority" attrs="{'invisible': [('terms_eval','!=',True)]}"/>
+                  <!-- <field name="terms" widget="priority" attrs="{'invisible': [('terms_eval','!=',True)]}"/> -->
                   <label for="terms_score" attrs="{'invisible': [('terms_eval','!=',True)]}"/>
                   <span><field name="terms_score" attrs="{'invisible': [('terms_eval','!=',True)]}" style="width: 25px;"/></span>
                   <field name="terms_comment" placeholder="Comments" attrs="{'invisible': [('terms_eval','!=',True)]}"/>
@@ -87,7 +87,7 @@
                 <label for="items_eval"/>
                 <div class="o_row">
                   <field name="items_eval"/>
-                  <field name="items" widget="priority" attrs="{'invisible': [('items_eval','!=',True)]}"/>
+                  <!-- <field name="items" widget="priority" attrs="{'invisible': [('items_eval','!=',True)]}"/> -->
                   <label for="items_score" attrs="{'invisible': [('items_eval','!=',True)]}"/>
                   <span><field name="items_score" attrs="{'invisible': [('items_eval','!=',True)]}" style="width: 25px;"/></span>
                   <field name="items_comment" placeholder="Comments" attrs="{'invisible': [('items_eval','!=',True)]}"/>
@@ -95,34 +95,10 @@
                 <label for="accuracy_eval"/>
                 <div class="o_row">
                   <field name="accuracy_eval"/>
-                  <field name="accuracy" widget="priority" attrs="{'invisible': [('accuracy_eval','!=',True)]}"/>
+                  <!-- <field name="accuracy" widget="priority" attrs="{'invisible': [('accuracy_eval','!=',True)]}"/> -->
                   <label for="accuracy_score" attrs="{'invisible': [('accuracy_eval','!=',True)]}"/>
                   <span><field name="accuracy_score" attrs="{'invisible': [('accuracy_eval','!=',True)]}" style="width: 25px;"/></span>
                   <field name="accuracy_comment" placeholder="Comments" attrs="{'invisible': [('accuracy_eval','!=',True)]}"/>
-                </div>
-                <label for="respon_eval"/>
-                <div class="o_row">
-                  <field name="respon_eval"/>
-                  <field name="respon" widget="priority" attrs="{'invisible': [('respon_eval','!=',True)]}"/>
-                  <label for="respon_score" attrs="{'invisible': [('respon_eval','!=',True)]}"/>
-                  <span><field name="respon_score" attrs="{'invisible': [('respon_eval','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="respon_comment" placeholder="Comments" attrs="{'invisible': [('respon_eval','!=',True)]}"/>
-                </div>
-                <label for="complain_eval"/>
-                <div class="o_row">
-                  <field name="complain_eval"/>
-                  <field name="complain" widget="priority" attrs="{'invisible': [('complain_eval','!=',True)]}"/>
-                  <label for="complain_score" attrs="{'invisible': [('complain_eval','!=',True)]}"/>
-                  <span><field name="complain_score" attrs="{'invisible': [('complain_eval','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="complain_comment" placeholder="Comments" attrs="{'invisible': [('complain_eval','!=',True)]}"/>
-                </div>
-                <label for="warranty_eval"/>
-                <div class="o_row">
-                  <field name="warranty_eval"/>
-                  <field name="warranty" widget="priority" attrs="{'invisible': [('warranty_eval','!=',True)]}"/>
-                  <label for="warranty_score" attrs="{'invisible': [('warranty_eval','!=',True)]}"/>
-                  <span><field name="warranty_score" attrs="{'invisible': [('warranty_eval','!=',True)]}" style="width: 25px;"/></span>
-                  <field name="warranty_comment" placeholder="Comments" attrs="{'invisible': [('warranty_eval','!=',True)]}"/>
                 </div>
                 
                 <div>
