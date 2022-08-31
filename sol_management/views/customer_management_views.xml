@@ -108,7 +108,7 @@
 
             <group string="Evaluation Report">
               <field name="final_score" style="font-weight: bold;"/>
-              <field name="final_rate" widget="priority" readonly="1"/>
+              <field name="final_rate" widget="priority"/>
               <field name="final_comment"/>
             </group>
 

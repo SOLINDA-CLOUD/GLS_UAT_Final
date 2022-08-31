@@ -167,7 +167,6 @@ class CustomerManagement(models.Model):
             if rec.accuracy_eval:
                 count += rec.accuracy_score
                 sum_total += (int(rec.accuracy) * rec.accuracy_score)
-           
             else:
                 rec.final_score = count
 
