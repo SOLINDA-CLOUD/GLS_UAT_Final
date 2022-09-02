@@ -5,6 +5,7 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
     _description = 'Stock Picking'
     
+    ship_via = fields.Char(string='Ship Via')
     
     def button_validate(self):
         for i in self:

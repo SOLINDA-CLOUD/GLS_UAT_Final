@@ -11,12 +11,11 @@ class CustomerManagement(models.Model):
 
     name = fields.Char('Document number', default='/', readonly='True', copy=False)
     point = [
-        ('0', 'Not Good'),
+        ('0', 'New Customer'),
         ('1', 'Bad'),
-        ('2', 'Not Bad'),
-        ('3', 'Satisfied'),
-        ('4', 'Great'),
-        ('5', 'Excellent')
+        ('2', 'Satisfied'),
+        ('3', 'Excellent')
+
     ]
 
     state = fields.Selection([
@@ -79,8 +78,8 @@ class CustomerManagement(models.Model):
     ]
 
     ## Customer Eval 1
-    price_eval = fields.Boolean(string='1. Pricing', readonly=True, states={'draft': [('readonly', False)]},
-                help='Most Competitive(4), 5%(3), 10%(2), More than 10%(1)')
+    price_eval = fields.Boolean(string='1. Omset', readonly=True, states={'draft': [('readonly', False)]},
+                help='> Rp. 1.000.000.000(4), Rp. 500.000.000 - Rp. 1.000.000.000(3), < Rp. 500.000.000(2)')
     price_score = fields.Integer(string='Score', readonly=True, states={'draft': [('readonly', False)]})
     price = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     price_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
@@ -89,15 +88,15 @@ class CustomerManagement(models.Model):
     def criteria_price(self):
         for rec in self:
             if rec.price_eval and rec.price_score > 4:
-                raise ValidationError('Score of Customer eval no 1 must be 1 until 4!')
-            if rec.price_eval and rec.price_score < 1:
-                raise ValidationError('Score of Customer eval no 1 must be 1 until 4!')
+                raise ValidationError('Score of Customer eval no 1 must be 2 until 4!')
+            if rec.price_eval and rec.price_score < 2:
+                raise ValidationError('Score of Customer eval no 1 must be 2 until 4!')
             if rec.price_eval and not rec.price:
                 raise ValidationError('Customer eval no 1 has not evaluated yet!')
     
     ## Customer Eval 2
-    terms_eval = fields.Boolean(string='2. Terms of Payment', readonly=True, states={'draft': [('readonly', False)]},
-                help='30 to 45 Days(4), 14 Days(3), 7 Days(2), CBD/COD(1)')
+    terms_eval = fields.Boolean(string='2. History of Payment', readonly=True, states={'draft': [('readonly', False)]},
+                help='Ontime(4), Overdue < 2 month(3), Overdue < 4 month(2)')
     terms_score = fields.Integer(string='Score', readonly=True, states={'draft': [('readonly', False)]})
     terms = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     terms_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
@@ -106,15 +105,15 @@ class CustomerManagement(models.Model):
     def criteria_terms(self):
         for rec in self:
             if rec.terms_eval and rec.terms_score > 4:
-                raise ValidationError('Score of Customer eval no 2 must be 1 until 4!')
-            if rec.terms_eval and rec.terms_score < 1:
-                raise ValidationError('Score of Customer eval no 2 must be 1 until 4!')
+                raise ValidationError('Score of Customer eval no 2 must be 2 until 4!')
+            if rec.terms_eval and rec.terms_score < 2:
+                raise ValidationError('Score of Customer eval no 2 must be 2 until 4!')
             if rec.terms_eval and not rec.terms:
                 raise ValidationError('Customer eval no 2 has not evaluated yet!')
 
     ## Customer Eval 3
-    items_eval = fields.Boolean(string='3. Item Avaibility', readonly=True, states={'draft': [('readonly', False)]},
-                help='Ready Stock(4), Indent(2)')
+    items_eval = fields.Boolean(string='3. Communication', readonly=True, states={'draft': [('readonly', False)]},
+                help='Fast(3), Slow(2), Too Slow(1)')
     items_score = fields.Integer(string='Score', readonly=True, states={'draft': [('readonly', False)]})
     items = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     items_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
@@ -122,16 +121,16 @@ class CustomerManagement(models.Model):
     @api.constrains('items_score', 'items')
     def criteria_items(self):
         for rec in self:
-            if rec.items_eval and rec.items_score > 4:
-                raise ValidationError('Score of Customer eval no 3 must be 2 or 4!')
+            if rec.items_eval and rec.items_score > 3:
+                raise ValidationError('Score of Customer eval no 3 must be 1 until 3!')
             if rec.items_eval and rec.items_score < 1:
-                raise ValidationError('Score of Customer eval no 3 must be 2 or 4!')
+                raise ValidationError('Score of Customer eval no 3 must be 1 until 3!')
             if rec.items_eval and not rec.items:
                 raise ValidationError('Customer eval no 3 has not evaluated yet!')
 
     ## Customer Eval 4
-    accuracy_eval = fields.Boolean(string='4. Accuracy in Delivery', readonly=True, states={'draft': [('readonly', False)]},
-                    help='Match with Quotation(4), Quotation +3 days(3), Quotation +7 days(2), Quotation + 14 days(1)')
+    accuracy_eval = fields.Boolean(string='4. Company Image', readonly=True, states={'draft': [('readonly', False)]},
+                    help='Big(3), Moderate(2), Small(1)')
     accuracy_score = fields.Integer(string='Score', readonly=True, states={'draft': [('readonly', False)]})
     accuracy = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
     accuracy_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
@@ -139,57 +138,12 @@ class CustomerManagement(models.Model):
     @api.constrains('accuracy_score', 'accuracy')
     def criteria_accuracy(self):
         for rec in self:
-            if rec.accuracy_eval and rec.accuracy_score > 4:
-                raise ValidationError('Score of Customer eval no 4 must be 1 until 4!')
+            if rec.accuracy_eval and rec.accuracy_score > 3:
+                raise ValidationError('Score of Customer eval no 4 must be 1 until 3!')
             if rec.accuracy_eval and rec.accuracy_score < 1:
-                raise ValidationError('Score of Customer eval no 4 must be 1 until 4!')
+                raise ValidationError('Score of Customer eval no 4 must be 1 until 3!')
             if rec.accuracy_eval and not rec.accuracy:
                 raise ValidationError('Customer eval no 4 has not evaluated yet!')
-
-    ## Customer Eval 5
-    respon_eval = fields.Boolean(string='5. Respon For RFQ', readonly=True, states={'draft': [('readonly', False)]},
-                help='Fast(4), Slow(2)')
-    respon_score = fields.Integer(string='Score', readonly=True, states={'draft': [('readonly', False)]})
-    respon = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
-    respon_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
-
-    @api.constrains('respom_score', 'respon')
-    def criteria_respon(self):
-        for rec in self:
-            if rec.respon_eval and rec.respon_score != 2 and rec.respon_score != 4:
-                raise ValidationError('Score of Customer eval no 5 must be 2 or 4!')
-            if rec.terms_eval and not rec.terms:
-                raise ValidationError('Customer eval no 5 has not evaluated yet!')
-
-    ## Customer Eval 6
-    complain_eval = fields.Boolean(string='6. Respon For Complain', readonly=True, states={'draft': [('readonly', False)]},
-                    help='Good(4), Bad(-4)')
-    complain_score = fields.Integer(string='Score', readonly=True, states={'draft': [('readonly', False)]})
-    complain = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
-    complain_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
-
-    @api.constrains('complain_score', 'complain')
-    def criteria_complain(self):
-        for rec in self:
-            if rec.complain_eval and rec.complain_score != 4 and rec.complain_score != -4:
-                raise ValidationError('Score of Customer eval no 6 must be -4 or 4!')
-            if rec.terms_eval and not rec.terms:
-                raise ValidationError('Customer eval no 6 has not evaluated yet!')
-
-    ## Customer Eval 7
-    warranty_eval = fields.Boolean(string='7. Claim For Warranty', readonly=True, states={'draft': [('readonly', False)]},
-                    help='Convenient(4), Complicated(-4)')
-    warranty_score = fields.Integer(string='Score', readonly=True, states={'draft': [('readonly', False)]})
-    warranty = fields.Selection(point, string='Rate', default=point[0][0], readonly=True, states={'draft': [('readonly', False)]})
-    warranty_comment = fields.Char(string='Comment', readonly=True, states={'draft': [('readonly', False)]})
-
-    @api.constrains('warranty_score', 'warranty')
-    def criteria_warranty(self):
-        for rec in self:
-            if rec.warranty_eval and rec.warranty_score != 4 and rec.warranty_score != -4:
-                raise ValidationError('Score of Customer eval no 7 must be -4 or 4!')
-            if rec.warranty_eval and not rec.warranty:
-                raise ValidationError('Customer eval no 7 has not evaluated yet!')
 
     ##Management Report
     final_score = fields.Float(readonly=True, store=True, string='Final Score')
@@ -212,20 +166,17 @@ class CustomerManagement(models.Model):
             if rec.accuracy_eval:
                 count += rec.accuracy_score
                 sum_total += (int(rec.accuracy) * rec.accuracy_score)
-            if rec.respon_eval:
-                count += rec.respon_score
-                sum_total += (int(rec.respon) * rec.respon_score)
-            if rec.complain_eval:
-                count += rec.complain_score
-                sum_total += (int(rec.complain) * rec.complain_score)
-            if rec.warranty_eval:
-                count += rec.warranty_score
-                sum_total += (int(rec.warranty) * rec.warranty_score)
             if count == 0:
-                raise ValidationError('Error division by 0!')
+                rec.final_rate = rec.point[0][0]
+            if count >= 6 and count <= 9:
+                rec.final_rate = rec.point[1][0]
+            if count >= 10 and count <= 12:
+                rec.final_rate = rec.point[2][0]
+            if count >= 13 and count <= 14:
+                rec.final_rate = rec.point[3][0]
             else:
                 rec.final_score = count
-                rec.final_rate = str(round(sum_total/count))
+
     
     def unlink(self):
         for rec in self:
@@ -241,9 +192,9 @@ class CustomerManagement(models.Model):
         rec.calculate()
         return rec
 
-    def write(self, vals):
-        rec = super(CustomerManagement, self).write(vals)
-        if 'final_score' not in vals and 'final_rate' not in vals:
-            self.calculate()
-        return rec
+    # def write(self, vals):
+    #     rec = super(CustomerManagement, self).write(vals)
+    #     if 'final_score' not in vals and 'final_rate' not in vals:
+    #         self.calculate()
+    #     return rec
 

@@ -191,7 +191,7 @@ class VendorManagement(models.Model):
 
     ##Management Report
     final_score = fields.Float(readonly=True, store=True, string='Final Score')
-    final_rate = fields.Selection(point, readonly=True, string='Final Rate')
+    final_rate = fields.Selection(point, string='Final Rate')
     final_comment = fields.Char(string='Final Comment', states={'cancelled': [('readonly', True)]})
 
     def calculate(self):
@@ -220,10 +220,9 @@ class VendorManagement(models.Model):
                 count += rec.warranty_score
                 sum_total += (int(rec.warranty) * rec.warranty_score)
             if count == 0:
-                raise ValidationError('Error division by 0!')
+                raise ValidationError('Score must be filled!')
             else:
                 rec.final_score = count
-                rec.final_rate = str(round(sum_total/count))
     
     def unlink(self):
         for rec in self:
@@ -239,11 +238,11 @@ class VendorManagement(models.Model):
         rec.calculate()
         return rec
 
-    def write(self, vals):
-        rec = super(VendorManagement, self).write(vals)
-        if 'final_score' not in vals and 'final_rate' not in vals:
-            self.calculate()
-        return rec
+    # def write(self, vals):
+    #     rec = super(VendorManagement, self).write(vals)
+    #     if 'final_score' not in vals and 'final_rate' not in vals:
+    #         self.calculate()
+    #     return rec
 
 class VendorAdd(models.Model):
     _inherit = 'res.partner'
