@@ -14,7 +14,7 @@
                     <field name="cut_off"/>
                 </xpath>
 
-                <xpath expr="//notebook/page[@name='information']" position="after">
+                <xpath expr="//notebook/page[@name='additional_info']" position="after">
                     <page name="list_equipment" string="Equipment">
                         <field name="equipment_ids" readonly='1'>
                             <tree>
