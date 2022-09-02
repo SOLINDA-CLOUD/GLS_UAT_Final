@@ -1,6 +1,11 @@
 from odoo import _, api, fields, models
 from dateutil import relativedelta
 
+class MaintenanceEquipment(models.Model):
+    _inherit = 'maintenance.equipment'
+
+    location_id = fields.Many2one('stock.location', string='Location')    
+
 class ActionPlanMaintenance(models.Model):
     _name = 'action.plan.maintenance'
     _description = 'Action Plan Maintenance'

@@ -5,6 +5,8 @@ class StockLocation(models.Model):
     _inherit = 'stock.location'
 
     chemical_catridge_usage = fields.Float('Chemical Catridge Usage')
+    cut_off = fields.Date('Cut Off')
+    equipment_ids = fields.One2many('maintenance.equipment', 'location_id', string='Equipment')
 
 class ChemicalCatridge(models.Model):
     _name = 'chemical.catridge'
