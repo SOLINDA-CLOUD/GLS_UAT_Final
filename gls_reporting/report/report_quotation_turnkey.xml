@@ -349,7 +349,10 @@ p {
                                 <br />
                                 <br />
                                 <span style="text-decoration: underline;">
-                                    <strong>(I Ketut Wiguna)<br />
+                                    <!-- <strong>(I Ketut Wiguna)<br /> -->
+                                    <strong>
+                                        <t t-esc="doc.approved_by_id.name"/>
+                                        <br />
                                     </strong>
                                 </span>President Director</td>
                             <td style="text-align: center; width: 8.52077%;"></td>
