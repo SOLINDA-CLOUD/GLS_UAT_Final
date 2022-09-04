@@ -79,7 +79,7 @@ class CostSheet(models.Model):
     phone = fields.Char(related='attn_id.phone', store=True)
     email = fields.Char(related='attn_id.email', store=True)
     ref_turnkey = fields.Char(string='Ref')
-    
+    approved_by_id = fields.Many2one('res.users', string='Approved By',tracking=True)
     # Terms and Conditions
     quotation_validity = fields.Char('Quotation Validity')
     delivery_time = fields.Char('Delivery Time')
@@ -138,7 +138,7 @@ class CostSheet(models.Model):
     def action_submit(self):
         self.write({'state':'submit'})
     def action_done(self):
-        self.write({'state':'approved'})
+        self.write({'state':'approved','approved_by_id':self.env.user.id})
     def action_reject(self):
         self.write({'state':'reject'})
     def action_to_draft(self):
