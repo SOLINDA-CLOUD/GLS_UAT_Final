@@ -137,7 +137,7 @@
                             <field name="product_id" readonly="1" force_save="1" />
                             <field name="rap_state" invisible="0" />
                         </group>
-                        <field name="parent_component_line_ids" context="{'default_rap_id':parent.rap_id,'default_rab_id':False}">
+                        <field name="parent_component_line_ids" context="{'default_rap_id':parent.rap_id,'default_rab_id':False}" attrs="{'readonly':[('rap_state','!=','draft')]}">
                             <tree editable="bottom">
                                 <field name="rap_id" readonly="1" force_save="1" />
                                 <field name="product_id" />
