@@ -54,7 +54,7 @@
           <field name="qty_received_account" />
         </xpath>
         <xpath expr="//notebook/page/field/tree/field[@name='qty_received_account']" position="after">
-          <field name="qty_delivered_account" />
+          <field name="qty_delivered_account" readonly="1"/>
         </xpath>
         <xpath expr="//field[@name='invoice_line_ids']/form/sheet/group[2]/field[@name='analytic_account_id']" position="attributes">
           <attribute name="required">1</attribute>
