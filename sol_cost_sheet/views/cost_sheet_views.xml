@@ -162,7 +162,7 @@
                   <tree editable="bottom">
                     <field name="product_id" required="1" />
                     <field name="product_qty" />
-                    <field name="existing_price" />
+                    <field name="existing_price" readonly="1"/>
                     <field name="rfq_price" />
                     <field name="total_price" />
                     <field name="remarks" />
@@ -176,7 +176,7 @@
                   <tree editable="bottom">
                     <field name="product_id" required="1" />
                     <field name="product_qty" />
-                    <field name="existing_price" />
+                    <field name="existing_price" readonly="1"/>
                     <field name="rfq_price" />
                     <field name="total_price" />
                     <field name="remarks" />
@@ -258,7 +258,7 @@
                 <field name="name" widget="section_and_note_text" attrs="{'required': [('display_type','!=',False)]}"/>
                 <field name="uom_id" domain="[('category_id', '=', product_uom_category_id)]" />
                 <field name="product_qty" />
-                <field name="existing_price" />
+                <field name="existing_price" readonly="1"/>
                 <field name="rfq_price" />
                 <field name="total_price" />
                 <field name="remarks" />
