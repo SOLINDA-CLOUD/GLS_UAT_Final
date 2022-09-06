@@ -135,6 +135,23 @@ class CsRAP(models.Model):
             "context": {'default_rap_id':self.id},
         }
 
+    @api.onchange('ga_project_line_ids')
+    def _onchange_price_ga(self):
+        for line in self:
+            self.ga_project_line_ids.rfq_price = self.ga_project_line_ids.existing_price
+
+    @api.onchange('waranty_line_ids')
+    def _onchange_price_waranty(self):
+        for line in self:
+            self.waranty_line_ids.rfq_price = self.waranty_line_ids.existing_price
+
+    @api.onchange('product_id')
+    def _onchange_existing(self):
+        if self.product_id:
+            existing_price = ''
+            if self.product_id.last_purchase_price:
+                existing_price = self.product_id.last_purchase_price
+            self.existing_price = existing_price
 
 
 class RapCategory(models.Model):
