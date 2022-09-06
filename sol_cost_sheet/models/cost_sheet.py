@@ -371,7 +371,7 @@ class GaProject(models.Model):
     product_id = fields.Many2one('product.product',required=True)    
     product_qty = fields.Integer('Quantity')
     existing_price = fields.Float('Existing Price')
-    rfq_price = fields.Float('RFQ Price')
+    rfq_price = fields.Float('RFQ Price', store=True)
     total_price = fields.Float(compute='_compute_total_price', string='Total Price',store=True)
     rap_price = fields.Float('RAP Price')
     
@@ -401,7 +401,7 @@ class WarantyWaranty(models.Model):
     product_id = fields.Many2one('product.product',required=True)    
     product_qty = fields.Integer('Quantity')
     existing_price = fields.Float('Existing Price')
-    rfq_price = fields.Float('RFQ Price')
+    rfq_price = fields.Float('RFQ Price', store=True)
     total_price = fields.Float(compute='_compute_total_price', string='Total Price',store=True)
     remarks = fields.Text('Remarks')
     rap_price = fields.Float('RAP Price')
