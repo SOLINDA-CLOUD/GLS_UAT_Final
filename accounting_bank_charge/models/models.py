@@ -380,7 +380,6 @@ class AccountPayment(models.Model):
                             "bank_charge_line": True
                         }),
                     ]})
-
                 if self.is_bank_charges and self.is_bank_tax_applicable and not move.line_ids.filtered(
                         lambda e: e.bank_tax_charge_line is True):
                     taxes = self.get_tax_vals()
