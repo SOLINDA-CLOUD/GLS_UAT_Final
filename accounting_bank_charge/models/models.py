@@ -346,8 +346,8 @@ class AccountPayment(models.Model):
                         "partner_id": self.partner_id.id or False,
                         "journal_id": self.journal_id.id,
                         "account_id": self.bank_charges_account.id,
-                        "debit": self.bank_charges if self.payment_type == 'outbound' else 0.0,
-                        "credit": self.bank_charges if self.payment_type == 'inbound' else 0.0,
+                        "debit": self.bank_charges if self.payment_type == 'inbound' else 0.0,
+                        "credit": self.bank_charges if self.payment_type == 'outbound' else 0.0,
                         "date_maturity": self.date,
                         "bank_charge_line": True
                     }),
@@ -377,8 +377,8 @@ class AccountPayment(models.Model):
                             "partner_id": self.partner_id.id or False,
                             "journal_id": self.journal_id.id,
                             "account_id": self.journal_id.default_account_id.id,
-                            "debit": self.bank_tax_amount if self.payment_type == 'inbound' else 0.0,
-                            "credit": self.bank_tax_amount if self.payment_type == 'outbound' else 0.0,
+                            "debit": self.bank_tax_amount if self.payment_type == 'outbound' else 0.0,
+                            "credit": self.bank_tax_amount if self.payment_type == 'inbound' else 0.0,
                             "date_maturity": self.date,
                             "bank_tax_charge_line": True
                         }),
