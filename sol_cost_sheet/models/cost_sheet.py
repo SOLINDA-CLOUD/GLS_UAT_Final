@@ -243,18 +243,6 @@ class CostSheet(models.Model):
         for this in self:
             this.subtotal = sum(this.category_line_ids.mapped('price'))
 
-    # @api.onchange('ga_project_line_ids')
-    # def _onchange_price_ga(self):
-    #     for line in self:
-    #         self.ga_project_line_ids.rfq_price = self.ga_project_line_ids.existing_price
-
-    # @api.onchange('waranty_line_ids')
-    # def _onchange_price_waranty(self):
-    #     for line in self:
-    #         self.waranty_line_ids.rfq_price = self.waranty_line_ids.existing_price
-
-
-
 
 class RabCategory(models.Model):
     _name = 'rab.category'
@@ -390,6 +378,14 @@ class GaProject(models.Model):
                 existing_price = self.product_id.last_purchase_price
             self.existing_price = existing_price
     
+    @api.onchange('product_id')
+    def _onchange_rfq_price(self):
+        if self.product_id:
+            rfq_price = ''
+            if self.product_id.last_purchase_price:
+                rfq_price = self.product_id.last_purchase_price
+            self.rfq_price = rfq_price
+    
 
 class WarantyWaranty(models.Model):
     _name = 'waranty.waranty'
@@ -419,3 +415,11 @@ class WarantyWaranty(models.Model):
             if self.product_id.last_purchase_price:
                 existing_price = self.product_id.last_purchase_price
             self.existing_price = existing_price
+
+    @api.onchange('product_id')
+    def _onchange_rfq_price(self):
+        if self.product_id:
+            rfq_price = ''
+            if self.product_id.last_purchase_price:
+                rfq_price = self.product_id.last_purchase_price
+            self.rfq_price = rfq_price
