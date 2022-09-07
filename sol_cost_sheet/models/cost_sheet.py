@@ -243,15 +243,15 @@ class CostSheet(models.Model):
         for this in self:
             this.subtotal = sum(this.category_line_ids.mapped('price'))
 
-    @api.onchange('ga_project_line_ids')
-    def _onchange_price_ga(self):
-        for line in self:
-            self.ga_project_line_ids.rfq_price = self.ga_project_line_ids.existing_price
+    # @api.onchange('ga_project_line_ids')
+    # def _onchange_price_ga(self):
+    #     for line in self:
+    #         self.ga_project_line_ids.rfq_price = self.ga_project_line_ids.existing_price
 
-    @api.onchange('waranty_line_ids')
-    def _onchange_price_waranty(self):
-        for line in self:
-            self.waranty_line_ids.rfq_price = self.waranty_line_ids.existing_price
+    # @api.onchange('waranty_line_ids')
+    # def _onchange_price_waranty(self):
+    #     for line in self:
+    #         self.waranty_line_ids.rfq_price = self.waranty_line_ids.existing_price
 
 
 
