@@ -87,8 +87,8 @@
                                     <tree editable="bottom">
                                         <field name="product_id" required="1" />
                                         <field name="product_qty" />
-                                        <field name="existing_price" />
-                                        <field name="rfq_price" />
+                                        <field name="existing_price" force_save="1" readonly="1"/>
+                                        <field name="rfq_price" force_save="1"/>
                                         <field name="total_price" />
                                         <field name="remarks" />
 
@@ -101,8 +101,8 @@
                                     <tree editable="bottom">
                                         <field name="product_id" required="1" />
                                         <field name="product_qty" />
-                                        <field name="existing_price" />
-                                        <field name="rfq_price" />
+                                        <field name="existing_price" force_save="1" readonly="1"/>
+                                        <field name="rfq_price" force_save="1"/>
                                         <field name="total_price" />
                                         <field name="remarks" />
 
@@ -137,7 +137,7 @@
                             <field name="product_id" readonly="1" force_save="1" />
                             <field name="rap_state" invisible="0" />
                         </group>
-                        <field name="parent_component_line_ids" context="{'default_rap_id':parent.rap_id,'default_rab_id':False}">
+                        <field name="parent_component_line_ids" context="{'default_rap_id':parent.rap_id,'default_rab_id':False}" attrs="{'readonly':[('rap_state','!=','draft')]}">
                             <tree editable="bottom">
                                 <field name="rap_id" readonly="1" force_save="1" />
                                 <field name="product_id" />
@@ -171,7 +171,7 @@
                             <field name="product_id" readonly="1" />
                             <field name="rap_state" invisible="1" />
                         </group>
-                        <field name="item_ids" context="{'default_category_id':parent.category_id,'default_rap_id':parent.rap_id,'default_cost_sheet_id':False}" widget="section_and_note_one2many">
+                        <field name="item_ids" context="{'default_category_id':parent.category_id,'default_rap_id':parent.rap_id,'default_cost_sheet_id':False}" attrs="{'readonly':[('rap_state','!=','draft')]}" widget="section_and_note_one2many">
                             <tree editable="bottom">
                                 <control>
                                     <create name="add_product_control" string="Add a product"/>
@@ -188,8 +188,8 @@
                                 <field name="name" widget="section_and_note_text" attrs="{'required': [('display_type','!=',False)]}"/>
                                 <field name="uom_id" domain="[('category_id', '=', product_uom_category_id)]" />
                                 <field name="product_qty" />
-                                <field name="existing_price" />
-                                <field name="rfq_price" />
+                                <field name="existing_price" force_save="1" readonly="1"/>
+                                <field name="rfq_price" force_save="1"/>
                                 <field name="total_price" />
                                 <field name="remarks" />
                             </tree>
@@ -234,8 +234,8 @@
                                 <field name="name" widget="section_and_note_text" attrs="{'required': [('display_type','!=',False)]}"/>
                                 <field name="uom_id" domain="[('category_id', '=', product_uom_category_id)]" />
                                 <field name="product_qty" />
-                                <field name="existing_price" />
-                                <field name="rfq_price" />
+                                <field name="existing_price" force_save="1" readonly="1"/>
+                                <field name="rfq_price" force_save="1"/>
                                 <field name="total_price" />
                                 <field name="remarks" />
                             </tree>

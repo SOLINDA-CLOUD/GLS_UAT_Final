@@ -244,8 +244,6 @@ class CostSheet(models.Model):
             this.subtotal = sum(this.category_line_ids.mapped('price'))
 
 
-
-
 class RabCategory(models.Model):
     _name = 'rab.category'
     _description = 'Rab Category'
@@ -361,7 +359,7 @@ class GaProject(models.Model):
     product_id = fields.Many2one('product.product',required=True)    
     product_qty = fields.Integer('Quantity')
     existing_price = fields.Float('Existing Price')
-    rfq_price = fields.Float('RFQ Price')
+    rfq_price = fields.Float('RFQ Price', store=True)
     total_price = fields.Float(compute='_compute_total_price', string='Total Price',store=True)
     rap_price = fields.Float('RAP Price')
     
@@ -371,6 +369,22 @@ class GaProject(models.Model):
     def _compute_total_price(self):
         for this in self:
             this.total_price = this.product_qty * this.rfq_price
+    
+    @api.onchange('product_id')
+    def _onchange_existing(self):
+        if self.product_id:
+            existing_price = ''
+            if self.product_id.last_purchase_price:
+                existing_price = self.product_id.last_purchase_price
+            self.existing_price = existing_price
+    
+    @api.onchange('product_id')
+    def _onchange_rfq_price(self):
+        if self.product_id:
+            rfq_price = ''
+            if self.product_id.last_purchase_price:
+                rfq_price = self.product_id.last_purchase_price
+            self.rfq_price = rfq_price
     
 
 class WarantyWaranty(models.Model):
@@ -383,7 +397,7 @@ class WarantyWaranty(models.Model):
     product_id = fields.Many2one('product.product',required=True)    
     product_qty = fields.Integer('Quantity')
     existing_price = fields.Float('Existing Price')
-    rfq_price = fields.Float('RFQ Price')
+    rfq_price = fields.Float('RFQ Price', store=True)
     total_price = fields.Float(compute='_compute_total_price', string='Total Price',store=True)
     remarks = fields.Text('Remarks')
     rap_price = fields.Float('RAP Price')
@@ -394,3 +408,18 @@ class WarantyWaranty(models.Model):
         for this in self:
             this.total_price = this.product_qty * this.rfq_price
     
+    @api.onchange('product_id')
+    def _onchange_existing(self):
+        if self.product_id:
+            existing_price = ''
+            if self.product_id.last_purchase_price:
+                existing_price = self.product_id.last_purchase_price
+            self.existing_price = existing_price
+
+    @api.onchange('product_id')
+    def _onchange_rfq_price(self):
+        if self.product_id:
+            rfq_price = ''
+            if self.product_id.last_purchase_price:
+                rfq_price = self.product_id.last_purchase_price
+            self.rfq_price = rfq_price

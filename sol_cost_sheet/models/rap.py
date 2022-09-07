@@ -135,6 +135,21 @@ class CsRAP(models.Model):
             "context": {'default_rap_id':self.id},
         }
 
+    @api.onchange('product_id')
+    def _onchange_existing(self):
+        if self.product_id:
+            existing_price = ''
+            if self.product_id.last_purchase_price:
+                existing_price = self.product_id.last_purchase_price
+            self.existing_price = existing_price
+    
+    @api.onchange('product_id')
+    def _onchange_rfq_price(self):
+        if self.product_id:
+            rfq_price = ''
+            if self.product_id.last_purchase_price:
+                rfq_price = self.product_id.last_purchase_price
+            self.rfq_price = rfq_price
 
 
 class RapCategory(models.Model):

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from numpy import False_
+# from numpy import False_
 from odoo import fields, models, api
 from xlsxwriter.utility import xl_range
 from xlsxwriter.utility import xl_rowcol_to_cell

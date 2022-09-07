@@ -326,32 +326,60 @@ class AccountPayment(models.Model):
             pay.write(move._cleanup_write_orm_values(pay, payment_vals_to_write))
 
             if self.is_bank_charges and not move.line_ids.filtered(lambda e: e.bank_charge_line is True):
-                move.write({'line_ids': [
-                    (0, 0, {
-                        "name": 'Bank Charges',
-                        "ref": self.ref,
-                        'currency_id': self.currency_id.id,
-                        "partner_id": self.partner_id.id or False,
-                        "journal_id": self.journal_id.id,
-                        "account_id": self.journal_id.default_account_id.id,
-                        "debit": self.bank_charges if self.payment_type == 'inbound' else 0.0,
-                        "credit": self.bank_charges if self.payment_type == 'outbound' else 0.0,
-                        "date_maturity": self.date,
-                        "bank_charge_line": True
-                    }),
-                    (0, 0, {
-                        "name": 'Bank Charges',
-                        "ref": self.ref,
-                        'currency_id': self.currency_id.id,
-                        "partner_id": self.partner_id.id or False,
-                        "journal_id": self.journal_id.id,
-                        "account_id": self.bank_charges_account.id,
-                        "debit": self.bank_charges if self.payment_type == 'outbound' else 0.0,
-                        "credit": self.bank_charges if self.payment_type == 'inbound' else 0.0,
-                        "date_maturity": self.date,
-                        "bank_charge_line": True
-                    }),
-                ]})
+                if self.journal_type == "sale":
+                    move.write({'line_ids': [
+                        (0, 0, {
+                            "name": 'Bank Charges',
+                            "ref": self.ref,
+                            'currency_id': self.currency_id.id,
+                            "partner_id": self.partner_id.id or False,
+                            "journal_id": self.journal_id.id,
+                            "account_id": self.journal_id.default_account_id.id,
+                            "debit": 0.0,
+                            "credit": self.bank_charges,
+                            "date_maturity": self.date,
+                            "bank_charge_line": True
+                        }),
+                        (0, 0, {
+                            "name": 'Bank Charges',
+                            "ref": self.ref,
+                            'currency_id': self.currency_id.id,
+                            "partner_id": self.partner_id.id or False,
+                            "journal_id": self.journal_id.id,
+                            "account_id": self.bank_charges_account.id,
+                            "debit": self.bank_charges,
+                            "credit": 0.0,
+                            "date_maturity": self.date,
+                            "bank_charge_line": True
+                        }),
+                    ]})
+                else:
+                    move.write({'line_ids': [
+                        (0, 0, {
+                            "name": 'Bank Charges',
+                            "ref": self.ref,
+                            'currency_id': self.currency_id.id,
+                            "partner_id": self.partner_id.id or False,
+                            "journal_id": self.journal_id.id,
+                            "account_id": self.journal_id.default_account_id.id,
+                            "debit": 0.0,
+                            "credit": self.bank_charges,
+                            "date_maturity": self.date,
+                            "bank_charge_line": True
+                        }),
+                        (0, 0, {
+                            "name": 'Bank Charges',
+                            "ref": self.ref,
+                            'currency_id': self.currency_id.id,
+                            "partner_id": self.partner_id.id or False,
+                            "journal_id": self.journal_id.id,
+                            "account_id": self.bank_charges_account.id,
+                            "debit": self.bank_charges,
+                            "credit": 0.0,
+                            "date_maturity": self.date,
+                            "bank_charge_line": True
+                        }),
+                    ]})
                 if self.is_bank_charges and self.is_bank_tax_applicable and not move.line_ids.filtered(
                         lambda e: e.bank_tax_charge_line is True):
                     taxes = self.get_tax_vals()
