@@ -26,6 +26,7 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'data/data.xml',
         'views/master_item.xml',
         'views/crm_views.xml',
         'views/sale_order_views.xml',
