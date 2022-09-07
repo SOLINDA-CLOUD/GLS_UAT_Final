@@ -26,7 +26,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
                     line.request_id.group_id,
                     line.company_id,
                     line.origin,
-                    # line.project_code,
+                    line.project_code,
                 )
                 purchase = purchase_obj.create(po_data)
 
