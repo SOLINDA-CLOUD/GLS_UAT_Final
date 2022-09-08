@@ -87,6 +87,12 @@ class PurchaseRequest(models.Model):
 
 class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
+    READONLY_STATES = {
+        'purchase': [('readonly', True)],
+        'done': [('readonly', True)],
+        'cancel': [('readonly', True)],
+    }
+
 
     name = fields.Char(string='Order Reference')
     notes = fields.Html(string='Notes')
