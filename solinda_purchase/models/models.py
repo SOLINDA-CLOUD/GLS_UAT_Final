@@ -103,6 +103,7 @@ class PurchaseOrder(models.Model):
         ('done', 'Locked'),
         ('cancel', 'Cancelled')
     ], string='Status', readonly=True, index=True, copy=False, default='draft', tracking=True)
+    currency_id = fields.Many2one('res.currency', 'Currency', required=True, states=READONLY_STATES, related="partner_id.property_purchase_currency_id",store=True)
 
     def button_confirm(self):
         for order in self:
