@@ -13,6 +13,6 @@ class PurchaseOrder(models.Model):
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
     
-    
+    project_code = fields.Char('Project Code',related="order_id.project_code")
     item_id = fields.Many2one('item.item')
     po_confirm_date = fields.Date('Po Confirm Date')    

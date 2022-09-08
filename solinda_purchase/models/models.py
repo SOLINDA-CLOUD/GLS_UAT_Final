@@ -93,7 +93,6 @@ class PurchaseOrder(models.Model):
         'cancel': [('readonly', True)],
     }
 
-
     name = fields.Char(string='Order Reference')
     notes = fields.Html(string='Notes')
     ekspedisi = fields.Char('Ekspedisi')
