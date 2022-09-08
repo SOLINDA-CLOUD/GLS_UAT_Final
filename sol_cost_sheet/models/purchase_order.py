@@ -23,4 +23,4 @@ class PurchaseOrderLine(models.Model):
             get_code = i.purchase_request_lines.mapped('project_code')
             if get_code:
                 for gc in get_code:
-                    code += '('+gc+')'    
+                    code += '('+str(gc)+')'    
