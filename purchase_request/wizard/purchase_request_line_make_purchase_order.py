@@ -117,7 +117,7 @@ class PurchaseRequestLineMakePurchaseOrder(models.TransientModel):
         return res
 
     @api.model
-    def _prepare_purchase_order(self, picking_type, group_id, company, origin,project_code):
+    def _prepare_purchase_order(self, picking_type, group_id, company, origin, project_code):
         if not self.supplier_id:
             raise UserError(_("Enter a supplier."))
         supplier = self.supplier_id
